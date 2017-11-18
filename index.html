@@ -365,26 +365,7 @@
       
         
           <p>JStorm 提供了两种运行模式：本地模式和分布式模式。本地模式针对开发调试storm topologies非常有用。</p>
-<p>如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。</p>
-<h2 id="单机模式主要是在代码中加入："><a href="#单机模式主要是在代码中加入：" class="headerlink" title="单机模式主要是在代码中加入："></a>单机模式主要是在代码中加入：</h2><pre><code class="java"><span class="keyword">import</span> backtype.storm.LocalCluster;
-
-LocalCluster cluster = <span class="keyword">new</span> LocalCluster();
-
-<span class="comment">//建议加上这行，使得每个bolt/spout的并发度都为1</span>
-conf.put(Config.TOPOLOGY_MAX_TASK_PARALLELISM, <span class="number">1</span>);
-
-<span class="comment">//提交拓扑</span>
-cluster.submitTopology(<span class="string">"SequenceTest"</span>, conf, builder.createTopology());
-
-<span class="comment">//等待1分钟， 1分钟后会停止拓扑和集群， 视调试情况可增大该数值</span>
-Thread.sleep(<span class="number">60000</span>);        
-
-<span class="comment">//结束拓扑</span>
-cluster.killTopology(<span class="string">"SequenceTest"</span>);
-
-cluster.shutdown();
-</code></pre>
-<p>用LocalCluster来模拟集群环境，你可以在<code>LocalCluster</code>对象上调用<code>submitTopology</code>方法来提交拓扑，<code>submitTopology(String topologyName, Map conf, StormTopology topology)</code>接受一个拓扑名称，一个拓扑的配置，以及一个拓扑的对象。就像<code>StormSubmitter</code>一样。你还可以调用<code>killTopology</code>来结束一个拓扑。对应的还有<code>active</code>,<code>deactive</code>,<code>rebalance</code>等方法。由于JStorm是个不会停止的程序，所以我们最后需要显示地停掉集群。</p>
+<p>如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/15/如何本地调试-JStorm-程序/#more" rel="contents">
@@ -492,8 +473,8 @@ cluster.shutdown();
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
                   </a>
                 </span>
 
@@ -531,8 +512,6 @@ cluster.shutdown();
       
         
           <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2013/07/13/hello-world/#more" rel="contents">

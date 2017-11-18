@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,work," />
+  <meta name="keywords" content="java,JStorm,安装," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="JStorm 提供了两种运行模式：本地模式和分布式模式。本地模式针对开发调试storm topologies非常有用。 如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。 单机模式主要是在代码中加入：import backtype.storm.LocalCluster;  LocalCl">
-<meta name="keywords" content="java,work">
+<meta name="description" content="JStorm 提供了两种运行模式：本地模式和分布式模式。本地模式针对开发调试storm topologies非常有用。 如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。">
+<meta name="keywords" content="java,JStorm,安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何本地调试-JStorm程序">
 <meta property="og:url" content="http://yoursite.com/2017/11/15/如何本地调试-JStorm-程序/index.html">
 <meta property="og:site_name" content="Pegasus">
-<meta property="og:description" content="JStorm 提供了两种运行模式：本地模式和分布式模式。本地模式针对开发调试storm topologies非常有用。 如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。 单机模式主要是在代码中加入：import backtype.storm.LocalCluster;  LocalCl">
+<meta property="og:description" content="JStorm 提供了两种运行模式：本地模式和分布式模式。本地模式针对开发调试storm topologies非常有用。 如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-16T01:49:23.667Z">
+<meta property="og:updated_time" content="2017-11-18T03:54:07.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何本地调试-JStorm程序">
-<meta name="twitter:description" content="JStorm 提供了两种运行模式：本地模式和分布式模式。本地模式针对开发调试storm topologies非常有用。 如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。 单机模式主要是在代码中加入：import backtype.storm.LocalCluster;  LocalCl">
+<meta name="twitter:description" content="JStorm 提供了两种运行模式：本地模式和分布式模式。本地模式针对开发调试storm topologies非常有用。 如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。">
 
 
 
@@ -363,7 +363,7 @@
 
       
         <p>JStorm 提供了两种运行模式：本地模式和分布式模式。本地模式针对开发调试storm topologies非常有用。</p>
-<p>如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。</p>
+<p>如果你还在用日常的web ui提交拓扑这种远古的方式进行调试测试，那就赶快阅读本文吧。本文将介绍在本机不安装JStorm环境的情况下，开发、调试JStorm程序。<br><a id="more"></a></p>
 <h2 id="单机模式主要是在代码中加入："><a href="#单机模式主要是在代码中加入：" class="headerlink" title="单机模式主要是在代码中加入："></a>单机模式主要是在代码中加入：</h2><pre><code class="java"><span class="keyword">import</span> backtype.storm.LocalCluster;
 
 LocalCluster cluster = <span class="keyword">new</span> LocalCluster();
@@ -383,7 +383,6 @@ cluster.killTopology(<span class="string">"SequenceTest"</span>);
 cluster.shutdown();
 </code></pre>
 <p>用LocalCluster来模拟集群环境，你可以在<code>LocalCluster</code>对象上调用<code>submitTopology</code>方法来提交拓扑，<code>submitTopology(String topologyName, Map conf, StormTopology topology)</code>接受一个拓扑名称，一个拓扑的配置，以及一个拓扑的对象。就像<code>StormSubmitter</code>一样。你还可以调用<code>killTopology</code>来结束一个拓扑。对应的还有<code>active</code>,<code>deactive</code>,<code>rebalance</code>等方法。由于JStorm是个不会停止的程序，所以我们最后需要显示地停掉集群。</p>
-<a id="more"></a>
 <h2 id="修改pom-xml"><a href="#修改pom-xml" class="headerlink" title="修改pom.xml"></a>修改pom.xml</h2><pre><code>以jstorm 2.1.1版本为例。
 </code></pre><pre><code class="xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>
   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.jstorm<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>
@@ -416,7 +415,9 @@ cluster.shutdown();
           
             <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/work/" rel="tag"># work</a>
+            <a href="/tags/JStorm/" rel="tag"># JStorm</a>
+          
+            <a href="/tags/安装/" rel="tag"># 安装</a>
           
         </div>
       
