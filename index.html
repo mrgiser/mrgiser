@@ -124,7 +124,7 @@
 
 
 
-  <title>Pegasus - hefeng</title>
+  <title>Pegasus</title>
   
 
 
@@ -170,7 +170,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">hefeng</p>
+        <p class="site-subtitle"></p>
       
   </div>
 
@@ -453,6 +453,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/15/个人博客搭建与配置：Hexo-github-域名绑定/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pegasus.He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_3428.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pegasus">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/15/个人博客搭建与配置：Hexo-github-域名绑定/" itemprop="url">个人博客搭建与配置：Hexo-github-域名绑定</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-15T20:46:25+08:00">
+                2016-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近想搭建个人的博客网站，查询一些信息以后决定采用<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a><br>+<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>的方式。该方法站在巨人的肩膀上，很是方便快捷，找了个很喜欢的主题，做了点配置就可以，最后在阿里云上买了个域名，成功搞定就差写博客了。这里就说一下建站的整个过程。<br><strong><a href="http://he-zhao.cn" target="_blank" rel="external">个人博客地址</a></strong><br><a href="http://he-zhao.cn" target="_blank" rel="external">http://he-zhao.cn</a></p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
+<li>Github账号注册</li>
+<li><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="external">Node.js安装</a></li>
+<li><a href="http://www.cnblogs.com/monodin/p/3268679.html" target="_blank" rel="external">git安装</a></li>
+</ul>
+<h2 id="Github-Pages"><a href="#Github-Pages" class="headerlink" title="Github Pages"></a>Github Pages</h2><p>注册了Github账号以后，每个账号可以建一个Github Pages <img src="http://upload-images.jianshu.io/upload_images/3800720-5e4ea17d240693fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Create a new repository"><br>Create a new repository后，<strong>严格使用你的github用户名+.github.io</strong>命名新的repository，例如我的用户名为mrgiser，新建的取名为 <a href="https://github.com/mrgiser/mrgiser.github.io" target="_blank" rel="external">mrgiser.github.io</a>，其他设置不用关心，这样GIthub Pages 所需要的版本库也创建好了。</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>安装好Git跟Node.js后，在cmd中执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli                  //安装hexo客户端</span><br><span class="line">$ npm install hexo-deployer-git --save     //安装用于部署到Git的插件</span><br></pre></td></tr></table></figure></p>
+<p>以上完成之后，执行下面的命令，Hexo将会在指定文件夹中新建所需要的文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure></p>
+<p>至此，hexo安装完成。</p>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>其实安装hexo的过程很简单，主要时间花在了找主题以及主题配置上了。我选择了一款在NexT上修改的主题<a href="https://github.com/iissnan/hexo-theme-next/wiki" target="_blank" rel="external">iissnan</a>。</p>
+<p>进入Hexo文件夹。然后使用下面的命令clone下iissnan主题，主题的文件代码将被下载至themes/iissnan文件夹中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/mrgiser/mrgiser.github.io.git themes/iissnan</span><br></pre></td></tr></table></figure></p>
+<p>打开博客主文件夹下的_config.yml，修改其中的theme 属性。theme: 后面要加空格。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: iissnan</span><br></pre></td></tr></table></figure></p>
+<h3 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h3><p>部署在本地方便查看调试效果，命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g #在public文件夹下生成静态页面</span><br><span class="line">$ hexo s #启动本地服务，进行文章预览调试,浏览器输入http://localhost:4000查看效果</span><br></pre></td></tr></table></figure></p>
+<h3 id="发布到Github-Pages"><a href="#发布到Github-Pages" class="headerlink" title="发布到Github Pages"></a>发布到Github Pages</h3><p>先对Git进行配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;your name&quot;</span><br><span class="line">$ git config --global user.email &quot;email@email.com&quot;</span><br></pre></td></tr></table></figure></p>
+<p>博客主文件夹下的<strong>_config.yml</strong>,也就是 <strong>站点配置文件</strong> ，配置其中的<em>deploy</em>参数，详细请查看官方文档中<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">部署部分</a>。<br>我的设置如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:mrgiser/mrgiser.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p>配置完成保存后，执行以下命令将代码同步到github pages上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g #需要先生成静态文件</span><br><span class="line">$ hexo d #将代码部署到github</span><br></pre></td></tr></table></figure></p>
+<p>输入<a href="https://XXXX.github.io访问个人github" target="_blank" rel="external">https://XXXX.github.io访问个人github</a> pages，其中XXXX为你github的用户名。</p>
+<h2 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h2><p>请记住博客主文件夹下的<strong>blog_config.yml</strong>为站点配置文件，主题配置文件为<strong>blog\themes\iissnan_config.yml。</strong></p>
+<h3 id="作者、标题、描述、语言等站点配置"><a href="#作者、标题、描述、语言等站点配置" class="headerlink" title="作者、标题、描述、语言等站点配置"></a>作者、标题、描述、语言等站点配置</h3><p>修改 <strong><em>站点配置文件</em></strong> 中的如下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Pegasus</span><br><span class="line">subtitle: </span><br><span class="line">description: 记录生活，写点东西</span><br><span class="line">author: Pegasus.He</span><br><span class="line">language: zh-Hans</span><br><span class="line">timezone:</span><br></pre></td></tr></table></figure></p>
+<h3 id="导航栏与侧边栏"><a href="#导航栏与侧边栏" class="headerlink" title="导航栏与侧边栏"></a>导航栏与侧边栏</h3><p>在导航栏中加入归档、分类、标签、关于等，在<strong><em>主题配置文件</em></strong>中修改如下部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || home</span><br><span class="line">  archives: /archives/ || archive</span><br><span class="line">  tags: /tags/ || tags</span><br><span class="line">  categories: /categories/ || th</span><br><span class="line">  about: /about/ || user</span><br></pre></td></tr></table></figure></p>
+<h3 id="社交信息添加"><a href="#社交信息添加" class="headerlink" title="社交信息添加"></a>社交信息添加</h3><p>在<strong><em>主题配置文件</em></strong>中修改如下部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/XXXXXX|| github</span><br><span class="line">  E-Mail: mailto:XXXXXXXX || envelope</span><br><span class="line">  #Google: https://plus.google.com/yourname || google</span><br><span class="line">  #Twitter: https://twitter.com/yourname || twitter</span><br><span class="line">  #FB Page: https://www.facebook.com/yourname || facebook</span><br></pre></td></tr></table></figure></p>
+<h3 id="头像"><a href="#头像" class="headerlink" title="头像"></a>头像</h3><p>在<strong><em>主题配置文件</em></strong>中修改如下部分,添加头像照片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line"># in theme directory(source/images): /images/avatar.gif</span><br><span class="line"># in site  directory(source/uploads): /uploads/avatar.gif</span><br><span class="line">avatar: /images/IMG_3428.JPG</span><br></pre></td></tr></table></figure></p>
+<h3 id="其他主题配置"><a href="#其他主题配置" class="headerlink" title="其他主题配置"></a>其他主题配置</h3><p>其他主题配置可参考<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">next使用文档</a>，Git上的<a href="https://github.com/iissnan/hexo-theme-next/issues" target="_blank" rel="external">有关主题的问答</a></p>
+<h2 id="域名配置"><a href="#域名配置" class="headerlink" title="域名配置"></a>域名配置</h2><p>这里讲述在阿里云上购买的域名如何配置，<strong>登陆阿里云-控制台-域名服务-域名</strong>，选择需要配置的域名，点击解析。<br><img src="http://upload-images.jianshu.io/upload_images/3800720-1f86822ae3bd011a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="域名配置"><br>删除默认所有<strong>主机记录为@</strong>的记录，添加解析参考如下：<br><img src="http://upload-images.jianshu.io/upload_images/3800720-2e95d1e65c6a1c03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加解析"></p>
+<p>在<strong><em>blog\source\</em></strong>文件夹下新建文件CNAME（在此新建文件，可以保证hexo d的时候不会删除掉），文本打开编辑，添加个人购买的域名，例如<a href="http://he-zhao.cn" target="_blank" rel="external"><strong>he-zhao.cn</strong></a><br><img src="http://upload-images.jianshu.io/upload_images/3800720-82d99a87346642d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CNAME"><br>重新部署<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g #需要先生成静态文件</span><br><span class="line">$ hexo d #将代码部署到github</span><br></pre></td></tr></table></figure></p>
+<p>至此域名绑定就完成了，访问自己的域名时，会显示github pages的页面。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>个人博客网站建好了，更重要的是好好记录。最后<strong><a href="http://he-zhao.cn" target="_blank" rel="external">个人博客地址</a></strong>希望支持，后期会增加一些技术博客，希望支持。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2013/07/13/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -636,7 +805,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -658,7 +827,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
