@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java,Elasticsearch,性能优化," />
 
 
 
@@ -77,16 +77,18 @@
 
 
 
-<meta name="description" content="记录生活，写点东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pegasus">
-<meta property="og:url" content="http://yoursite.com/archives/2017/11/index.html">
+<meta name="description" content="之前公司项目中有使用Elasticsearch存储日志，当时使用的功能简单，并没有深入了解Elasticsearch，但是对于该支持文本搜索的存储架构还是很感兴趣，最近因为想在一个新项目中采用ELK（Elasticsearch+Logstash+Kibana）技术栈来存储系统日志，学习有关Elasticsearch的书籍（深入理解Elasticsearch，第二版），现在就书本的第八章——提高性能">
+<meta name="keywords" content="Java,Elasticsearch,性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提高Elasticsearch性能的配置建议">
+<meta property="og:url" content="http://yoursite.com/2017/03/18/elasticsearch/index.html">
 <meta property="og:site_name" content="Pegasus">
-<meta property="og:description" content="记录生活，写点东西">
+<meta property="og:description" content="之前公司项目中有使用Elasticsearch存储日志，当时使用的功能简单，并没有深入了解Elasticsearch，但是对于该支持文本搜索的存储架构还是很感兴趣，最近因为想在一个新项目中采用ELK（Elasticsearch+Logstash+Kibana）技术栈来存储系统日志，学习有关Elasticsearch的书籍（深入理解Elasticsearch，第二版），现在就书本的第八章——提高性能">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-17T11:24:39.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pegasus">
-<meta name="twitter:description" content="记录生活，写点东西">
+<meta name="twitter:title" content="提高Elasticsearch性能的配置建议">
+<meta name="twitter:description" content="之前公司项目中有使用Elasticsearch存储日志，当时使用的功能简单，并没有深入了解Elasticsearch，但是对于该支持文本搜索的存储架构还是很感兴趣，最近因为想在一个新项目中采用ELK（Elasticsearch+Logstash+Kibana）技术栈来存储系统日志，学习有关Elasticsearch的书籍（深入理解Elasticsearch，第二版），现在就书本的第八章——提高性能">
 
 
 
@@ -116,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/11/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/18/elasticsearch/"/>
 
 
 
 
 
-  <title>归档 | Pegasus</title>
+  <title>提高Elasticsearch性能的配置建议 | Pegasus</title>
   
 
 
@@ -151,7 +153,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -289,111 +291,229 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 6 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/elasticsearch/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pegasus.He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_3428.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pegasus">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/11/29/JStorm运行依赖storm-core的任务：依赖冲突与解决/" itemprop="url">
-              
-                <span itemprop="name">JStorm运行依赖storm-core的任务：依赖冲突与解决</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">提高Elasticsearch性能的配置建议</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-29T20:00:00+08:00"
-              content="2017-11-29" >
-          11-29
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T00:00:00+08:00">
+                2017-03-18
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">Elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/11/15/如何本地调试-JStorm-程序/" itemprop="url">
-              
-                <span itemprop="name">如何本地调试-JStorm程序</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-15T20:46:25+08:00"
-              content="2017-11-15" >
-          11-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>之前公司项目中有使用Elasticsearch存储日志，当时使用的功能简单，并没有深入了解Elasticsearch，但是对于该支持文本搜索的存储架构还是很感兴趣，最近因为想在一个新项目中采用<strong>ELK</strong>（<em>Elasticsearch+Logstash+Kibana</em>）技术栈来存储系统日志，学习有关Elasticsearch的书籍（<strong>深入理解Elasticsearch，第二版</strong>），现在就书本的第八章——<strong>提高性能</strong>，总结一些有关使用Elasticsearch的Tips，该书采用的elasticsearch为1.4.X版本。</p>
+<a id="more"></a>
+<h3 id="热点线程检测"><a href="#热点线程检测" class="headerlink" title="热点线程检测"></a>热点线程检测</h3><p>热点线程API能向你提供系统变慢变卡顿的必需信息，它给出了什么可能是热点的信息，并使你可以看到系统的哪部分需要更深入的分析，例如查询的执行或者Lucene段的合并。<strong>热点线程API返回从CPU的角度来看，elasticsearch哪部分的代码可能是热点的信息，或者由于某些原因elasticsearch卡在了哪里。</strong></p>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><p>通过使用如下的命令你可以查看所有节点或者某些、某个节点的情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/_nodes/hot_threads</span><br><span class="line">/_nodes/&#123;node or nodes&#125;/hot_threads</span><br></pre></td></tr></table></figure></p>
+<p>例如为了查看所有节点上的热点线程，你可以执行如下的命令：<br><figure class="highlight plain"><figcaption><span>'localhost:9200/_nodes/hot_threads'```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">此API支持的参数包括</span><br><span class="line">- **threads 需要分析的线程数，默认3**</span><br><span class="line">- **interval 前后两次检查的时间间隔**</span><br><span class="line">- **type 需要检查的线程状态的类型，默认是CPU，可以是阻塞、等待等线程状态**</span><br><span class="line">- **snapshots 需要生产堆栈跟踪快照的数量**</span><br><span class="line"></span><br><span class="line">例如，想要以1s为周期查看所有节点上处于等待状态的热点线程，可以执行命令：</span><br><span class="line">```curl &apos;localhost:9200/_nodes/hot_threads?type=wait&amp;interval=1s&apos;</span><br></pre></td></tr></table></figure></p>
+<h4 id="执行原理"><a href="#执行原理" class="headerlink" title="执行原理"></a>执行原理</h4><p>热点线程检测执行流程如下：</p>
+<ol>
+<li>elasticsearch选取所有运行的线程，收集线程花费CPU的各种信息。</li>
+<li>等待interval参数指定的时间后，再次收集步骤1中同样的信息。</li>
+<li>对线程基于其消耗的时间进行排序，取前N（参数threads决定）线程分析</li>
+<li>每隔几毫秒，对3中选择的线程获取一些堆栈的快照，（数量由snapshots参数决定）</li>
+<li>组合堆栈信息，返回响应</li>
+</ol>
+<p>返回的响应包括：<strong>线程所属节点、消耗CPU时间的百分比、使用CPU的方式、线程名</strong>，最后跟着一个<strong>堆栈跟踪信息</strong>，通过以上信息可以定位节点的性能问题。</p>
+<h3 id="高负载场景的分类"><a href="#高负载场景的分类" class="headerlink" title="高负载场景的分类"></a>高负载场景的分类</h3><p>高负载场景可以分为三种情况：</p>
+<ul>
+<li><strong>专注于高索引负载</strong></li>
+<li><strong>专注于高查询负载</strong></li>
+<li><strong>高查询索引负载并行</strong></li>
+</ul>
+<p>后面按照三个场景进行说明</p>
+<h3 id="查询、索引负载均衡场景"><a href="#查询、索引负载均衡场景" class="headerlink" title="查询、索引负载均衡场景"></a>查询、索引负载均衡场景</h3><p>因为是查询、索引负载均衡的场景，所以一下建议不只是与索引性能、查询性能有关，而是与它们都有关。</p>
+<h4 id="正确的存储"><a href="#正确的存储" class="headerlink" title="正确的存储"></a>正确的存储</h4><p>选择正确的存储实现，在运行1.3版本以后时尤其重要。</p>
+<ul>
+<li>如果使用64位系统，考虑使用 <strong>mmapfs（内存映射）</strong></li>
+<li>基于UNIX系统考虑选择 <strong>Niofs</strong></li>
+<li>windows系统应该选择 <strong>simplefs</strong></li>
+<li>非持久化的存储考虑 <strong>内存存储</strong></li>
+</ul>
+<p>elasticsearch 1.3版本以后，默认使用的存储类型是一个 <strong>混合</strong> 的存储类型default，使用内存映射文件读取term字典，doc values，其他文件采用nio存储。</p>
+<h4 id="索引刷新频率"><a href="#索引刷新频率" class="headerlink" title="索引刷新频率"></a>索引刷新频率</h4><p>索引刷新的频率是指文档需要多长时间才能出现在搜索结果中。规则非常简单：<strong>刷新频率越短，查询越慢，且索引文档的吞吐量越低</strong>。默认的刷新频率是1s，这意味着索引查询器每1s都会重新打开一次。如果可以接受一个较慢的刷新频率，可以设置成5s、10s、30s等。</p>
+<h4 id="线程池调优"><a href="#线程池调优" class="headerlink" title="线程池调优"></a>线程池调优</h4><p>但你看到节点正在填充队列并且仍然有计算能力剩余，且这些计算能力可以被指定用于处理等待处理操作。线程池调优包括<strong><em>线程数</em></strong>以及<strong><em>等待队列长度</em></strong>两个方面。</p>
+<h4 id="调整合并过程"><a href="#调整合并过程" class="headerlink" title="调整合并过程"></a>调整合并过程</h4><p>Lucene段合并取决与你追加多少数据、多久追加一次等因素，对于Lucene分段和合并，需要记住：<strong>有多个段的索引执行查询比只有少量段的索引上执行慢。</strong>性能测试显示多个段上执行查询比只有一个段的索引要慢大约10%-15%。</p>
+<ul>
+<li><strong>如果你希望查询快，就需要更少的段</strong></li>
+</ul>
+<p>段合并限流，<strong>默认情况下elasticsearch会限制合并的速度在20MB/s，</strong>elasticsearch需要限流来避免合并过程中过多的影响搜索。如果使用的是SSD硬盘，那么默认20MB/s是不适合的，通过一下参数设置：</p>
+<ul>
+<li><strong>indices.store.throttle.max_bytes_per_sec</strong>设置端合并限流</li>
+</ul>
+<h3 id="高查询频率场景"><a href="#高查询频率场景" class="headerlink" title="高查询频率场景"></a>高查询频率场景</h3><h4 id="缓存设置"><a href="#缓存设置" class="headerlink" title="缓存设置"></a>缓存设置</h4><p>第一个有助于查询性能的缓存是 <strong>过滤器缓存</strong> ，可以使用下面的属性，来控制给定节点上能够被过滤器缓存使用的全部内存数量，默认是10%。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第二个缓存是 **分片查询缓存** ，她的目的是缓存聚合、提示词结果、命中数等，当你的查询使用了聚合、提示词等，最好启用这个缓存。该缓存的大小可以使用如下参数设置：</span><br><span class="line">```indices.cache.query.size</span><br></pre></td></tr></table></figure></p>
+<h4 id="查询的思考"><a href="#查询的思考" class="headerlink" title="查询的思考"></a>查询的思考</h4><ul>
+<li>总是考虑到优化查询结构、过滤器使用等</li>
+<li>过滤器不影响文档的打分，在计算得分时不被考虑进去</li>
+</ul>
+<h4 id="使用路由"><a href="#使用路由" class="headerlink" title="使用路由"></a>使用路由</h4><p>如果数据可以使用路由，你应该考虑使用它，可以避免在请求特定数据查询时查询所有的分片。</p>
+<h5 id="控制size和shard-size"><a href="#控制size和shard-size" class="headerlink" title="控制size和shard_size"></a>控制size和shard_size</h5><p>在处理聚合查询时，<strong>合理的设置size、shard_size，</strong>size定义了聚合结果返回多少组数据，聚合只会返回前size个结果给客户端；size、shard_size具有相同的意思，只是shard_size其作用是在分片的层次上。</p>
+<h3 id="高索引吞吐场景"><a href="#高索引吞吐场景" class="headerlink" title="高索引吞吐场景"></a>高索引吞吐场景</h3><h4 id="批量索引"><a href="#批量索引" class="headerlink" title="批量索引"></a>批量索引</h4><p>合理的使用批量索引可以显著提高索引的速度，但不要向elasticsearch发送过多的超出其能力的批量索引请求。</p>
+<h4 id="doc-value-与索引速度的权衡"><a href="#doc-value-与索引速度的权衡" class="headerlink" title="doc value 与索引速度的权衡"></a>doc value 与索引速度的权衡</h4><p>doc value可以帮助具有 <strong>排序、聚合、分组</strong> 的操作，但是记录doc value需要在索引时做一些额外的操作，这样会 <strong>降低索引速度</strong> 和 <strong>索引吞吐量</strong> ，所以需要结合具体应用场景，<strong>权衡</strong> doc value与索引速度。</p>
+<h4 id="控制文档的字段"><a href="#控制文档的字段" class="headerlink" title="控制文档的字段"></a>控制文档的字段</h4><p>尽量的保持你存储的字段尽可能的少，你在打多少情况下需要保存的字段是_source，在一些场景下需要判断是否需要存储 <strong><em>_all、_source</em></strong> 等字段。<br>在禁用_all字段时，设置一个新的默认搜索字段是一个很好的实践，使用如下命令设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#### 调整事务日志</span><br><span class="line">elasticsearch使用事务日志来获取最新的更新，确保数据的持久化以及优化Lucene索引的写入，默认的事务日志最多保留**5000**个操作，或者最多占用**200MB**的空间。两者的参数设置如下：</span><br></pre></td></tr></table></figure></p>
+<p>index.translog.flush_threshold_ops<br>index.translog.flush_threshold_size<br>```<br>如果需要获取更大的索引吞吐量，愿意付出数据在更长的时间内不能被搜索到，可以调高以上两个默认值。并且在故障发生时，拥有大量事务日志的节点需要更长时间去恢复。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>以上是有关elasticsearch使用中的小Tips，后期有时间会继续写一些有关elk技术栈的文章。</p>
+<p><strong>转载请标明出处</strong></p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Elasticsearch/" rel="tag"># Elasticsearch</a>
+          
+            <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/" rel="next" title="个人博客搭建与配置：Hexo-github-域名绑定">
+                <i class="fa fa-chevron-left"></i> 个人博客搭建与配置：Hexo-github-域名绑定
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/15/如何本地调试-JStorm-程序/" rel="prev" title="如何本地调试-JStorm程序">
+                如何本地调试-JStorm程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -401,6 +521,8 @@
 
 
           
+  
+
 
         </div>
         
@@ -421,8 +543,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -502,6 +633,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#热点线程检测"><span class="nav-number">1.</span> <span class="nav-text">热点线程检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行原理"><span class="nav-number">1.2.</span> <span class="nav-text">执行原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高负载场景的分类"><span class="nav-number">2.</span> <span class="nav-text">高负载场景的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询、索引负载均衡场景"><span class="nav-number">3.</span> <span class="nav-text">查询、索引负载均衡场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确的存储"><span class="nav-number">3.1.</span> <span class="nav-text">正确的存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引刷新频率"><span class="nav-number">3.2.</span> <span class="nav-text">索引刷新频率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程池调优"><span class="nav-number">3.3.</span> <span class="nav-text">线程池调优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整合并过程"><span class="nav-number">3.4.</span> <span class="nav-text">调整合并过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高查询频率场景"><span class="nav-number">4.</span> <span class="nav-text">高查询频率场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存设置"><span class="nav-number">4.1.</span> <span class="nav-text">缓存设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询的思考"><span class="nav-number">4.2.</span> <span class="nav-text">查询的思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用路由"><span class="nav-number">4.3.</span> <span class="nav-text">使用路由</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#控制size和shard-size"><span class="nav-number">4.3.1.</span> <span class="nav-text">控制size和shard_size</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高索引吞吐场景"><span class="nav-number">5.</span> <span class="nav-text">高索引吞吐场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#批量索引"><span class="nav-number">5.1.</span> <span class="nav-text">批量索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#doc-value-与索引速度的权衡"><span class="nav-number">5.2.</span> <span class="nav-text">doc value 与索引速度的权衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制文档的字段"><span class="nav-number">5.3.</span> <span class="nav-text">控制文档的字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -623,6 +770,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
