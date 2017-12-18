@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Elasticsearch,Java,性能优化," />
+  <meta name="keywords" content="Java,Elasticsearch,性能优化," />
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="之前公司项目中有使用Elasticsearch存储日志，当时使用的功能简单，并没有深入了解Elasticsearch，但是对于该支持文本搜索的存储架构还是很感兴趣，最近因为想在一个新项目中采用ELK（Elasticsearch+Logstash+Kibana）技术栈来存储系统日志，学习有关Elasticsearch的书籍（深入理解Elasticsearch，第二版），现在就书本的第八章——提高性能">
-<meta name="keywords" content="Elasticsearch,Java,性能优化">
+<meta name="keywords" content="Java,Elasticsearch,性能优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提高Elasticsearch性能的配置建议">
 <meta property="og:url" content="http://yoursite.com/2017/03/18/elasticsearch/index.html">
 <meta property="og:site_name" content="Pegasus">
 <meta property="og:description" content="之前公司项目中有使用Elasticsearch存储日志，当时使用的功能简单，并没有深入了解Elasticsearch，但是对于该支持文本搜索的存储架构还是很感兴趣，最近因为想在一个新项目中采用ELK（Elasticsearch+Logstash+Kibana）技术栈来存储系统日志，学习有关Elasticsearch的书籍（深入理解Elasticsearch，第二版），现在就书本的第八章——提高性能">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-17T13:27:04.329Z">
+<meta property="og:updated_time" content="2017-12-18T02:44:45.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提高Elasticsearch性能的配置建议">
 <meta name="twitter:description" content="之前公司项目中有使用Elasticsearch存储日志，当时使用的功能简单，并没有深入了解Elasticsearch，但是对于该支持文本搜索的存储架构还是很感兴趣，最近因为想在一个新项目中采用ELK（Elasticsearch+Logstash+Kibana）技术栈来存储系统日志，学习有关Elasticsearch的书籍（深入理解Elasticsearch，第二版），现在就书本的第八章——提高性能">
@@ -450,7 +450,7 @@
 <li>过滤器不影响文档的打分，在计算得分时不被考虑进去</li>
 </ul>
 <h4 id="使用路由"><a href="#使用路由" class="headerlink" title="使用路由"></a>使用路由</h4><p>如果数据可以使用路由，你应该考虑使用它，可以避免在请求特定数据查询时查询所有的分片。</p>
-<h5 id="控制size和shard-size"><a href="#控制size和shard-size" class="headerlink" title="控制size和shard_size"></a>控制size和shard_size</h5><p>在处理聚合查询时，<strong>合理的设置size、shard_size，</strong>size定义了聚合结果返回多少组数据，聚合只会返回前size个结果给客户端；size、shard_size具有相同的意思，只是shard_size其作用是在分片的层次上。</p>
+<h4 id="控制size和shard-size"><a href="#控制size和shard-size" class="headerlink" title="控制size和shard_size"></a>控制size和shard_size</h4><p>在处理聚合查询时，<strong>合理的设置size、shard_size，</strong>size定义了聚合结果返回多少组数据，聚合只会返回前size个结果给客户端；size、shard_size具有相同的意思，只是shard_size其作用是在分片的层次上。</p>
 <h3 id="高索引吞吐场景"><a href="#高索引吞吐场景" class="headerlink" title="高索引吞吐场景"></a>高索引吞吐场景</h3><h4 id="批量索引"><a href="#批量索引" class="headerlink" title="批量索引"></a>批量索引</h4><p>合理的使用批量索引可以显著提高索引的速度，但不要向elasticsearch发送过多的超出其能力的批量索引请求。</p>
 <h4 id="doc-value-与索引速度的权衡"><a href="#doc-value-与索引速度的权衡" class="headerlink" title="doc value 与索引速度的权衡"></a>doc value 与索引速度的权衡</h4><p>doc value可以帮助具有 <strong>排序、聚合、分组</strong> 的操作，但是记录doc value需要在索引时做一些额外的操作，这样会 <strong>降低索引速度</strong> 和 <strong>索引吞吐量</strong> ，所以需要结合具体应用场景，<strong>权衡</strong> doc value与索引速度。</p>
 <h4 id="控制文档的字段"><a href="#控制文档的字段" class="headerlink" title="控制文档的字段"></a>控制文档的字段</h4><p>尽量的保持你存储的字段尽可能的少，你在打多少情况下需要保存的字段是_source，在一些场景下需要判断是否需要存储 <strong><em>_all、_source</em></strong> 等字段。<br>在禁用_all字段时，设置一个新的默认搜索字段是一个很好的实践，使用如下命令设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index.query.default_field：set_your_name</span><br></pre></td></tr></table></figure></p>
@@ -475,9 +475,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Elasticsearch/" rel="tag"># Elasticsearch</a>
-          
             <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Elasticsearch/" rel="tag"># Elasticsearch</a>
           
             <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
           
@@ -654,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#热点线程检测"><span class="nav-number">1.</span> <span class="nav-text">热点线程检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行原理"><span class="nav-number">1.2.</span> <span class="nav-text">执行原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高负载场景的分类"><span class="nav-number">2.</span> <span class="nav-text">高负载场景的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询、索引负载均衡场景"><span class="nav-number">3.</span> <span class="nav-text">查询、索引负载均衡场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确的存储"><span class="nav-number">3.1.</span> <span class="nav-text">正确的存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引刷新频率"><span class="nav-number">3.2.</span> <span class="nav-text">索引刷新频率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程池调优"><span class="nav-number">3.3.</span> <span class="nav-text">线程池调优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整合并过程"><span class="nav-number">3.4.</span> <span class="nav-text">调整合并过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高查询频率场景"><span class="nav-number">4.</span> <span class="nav-text">高查询频率场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存设置"><span class="nav-number">4.1.</span> <span class="nav-text">缓存设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询的思考"><span class="nav-number">4.2.</span> <span class="nav-text">查询的思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用路由"><span class="nav-number">4.3.</span> <span class="nav-text">使用路由</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#控制size和shard-size"><span class="nav-number">4.3.1.</span> <span class="nav-text">控制size和shard_size</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高索引吞吐场景"><span class="nav-number">5.</span> <span class="nav-text">高索引吞吐场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#批量索引"><span class="nav-number">5.1.</span> <span class="nav-text">批量索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#doc-value-与索引速度的权衡"><span class="nav-number">5.2.</span> <span class="nav-text">doc value 与索引速度的权衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制文档的字段"><span class="nav-number">5.3.</span> <span class="nav-text">控制文档的字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整事务日志"><span class="nav-number">5.4.</span> <span class="nav-text">调整事务日志</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#热点线程检测"><span class="nav-number">1.</span> <span class="nav-text">热点线程检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行原理"><span class="nav-number">1.2.</span> <span class="nav-text">执行原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高负载场景的分类"><span class="nav-number">2.</span> <span class="nav-text">高负载场景的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询、索引负载均衡场景"><span class="nav-number">3.</span> <span class="nav-text">查询、索引负载均衡场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#正确的存储"><span class="nav-number">3.1.</span> <span class="nav-text">正确的存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引刷新频率"><span class="nav-number">3.2.</span> <span class="nav-text">索引刷新频率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程池调优"><span class="nav-number">3.3.</span> <span class="nav-text">线程池调优</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整合并过程"><span class="nav-number">3.4.</span> <span class="nav-text">调整合并过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高查询频率场景"><span class="nav-number">4.</span> <span class="nav-text">高查询频率场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存设置"><span class="nav-number">4.1.</span> <span class="nav-text">缓存设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询的思考"><span class="nav-number">4.2.</span> <span class="nav-text">查询的思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用路由"><span class="nav-number">4.3.</span> <span class="nav-text">使用路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制size和shard-size"><span class="nav-number">4.4.</span> <span class="nav-text">控制size和shard_size</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高索引吞吐场景"><span class="nav-number">5.</span> <span class="nav-text">高索引吞吐场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#批量索引"><span class="nav-number">5.1.</span> <span class="nav-text">批量索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#doc-value-与索引速度的权衡"><span class="nav-number">5.2.</span> <span class="nav-text">doc value 与索引速度的权衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制文档的字段"><span class="nav-number">5.3.</span> <span class="nav-text">控制文档的字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调整事务日志"><span class="nav-number">5.4.</span> <span class="nav-text">调整事务日志</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">6.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
