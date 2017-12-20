@@ -81,7 +81,7 @@
 <meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人博客搭建与配置：Hexo-github-域名绑定">
-<meta property="og:url" content="http://yoursite.com/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/index.html">
+<meta property="og:url" content="http://he-zhao.cn/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/index.html">
 <meta property="og:site_name" content="Pegasus">
 <meta property="og:description" content="最近想搭建个人的博客网站，查询一些信息以后决定采用Hexo+Github Pages的方式。该方法站在巨人的肩膀上，很是方便快捷，找了个很喜欢的主题，做了点配置就可以，最后在阿里云上买了个域名，成功搞定就差写博客了。这里就说一下建站的整个过程。个人博客地址http://he-zhao.cn">
 <meta property="og:locale" content="zh-Hans">
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/"/>
+  <link rel="canonical" href="http://he-zhao.cn/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/"/>
 
 
 
@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/">
+    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pegasus.He">
@@ -410,7 +410,7 @@
       
 
       
-        <p>最近想搭建个人的博客网站，查询一些信息以后决定采用<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a><br>+<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>的方式。该方法站在巨人的肩膀上，很是方便快捷，找了个很喜欢的主题，做了点配置就可以，最后在阿里云上买了个域名，成功搞定就差写博客了。这里就说一下建站的整个过程。<br><strong><a href="http://he-zhao.cn" target="_blank" rel="external">个人博客地址</a></strong><br><a href="http://he-zhao.cn" target="_blank" rel="external">http://he-zhao.cn</a><br><a id="more"></a></p>
+        <p>最近想搭建个人的博客网站，查询一些信息以后决定采用<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a><br>+<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>的方式。该方法站在巨人的肩膀上，很是方便快捷，找了个很喜欢的主题，做了点配置就可以，最后在阿里云上买了个域名，成功搞定就差写博客了。这里就说一下建站的整个过程。<br><strong><a href="http://he-zhao.cn">个人博客地址</a></strong><br><a href="http://he-zhao.cn">http://he-zhao.cn</a><br><a id="more"></a></p>
 <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
 <li>Github账号注册</li>
 <li><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="external">Node.js安装</a></li>
@@ -435,9 +435,9 @@
 <h3 id="头像"><a href="#头像" class="headerlink" title="头像"></a>头像</h3><p>在<strong><em>主题配置文件</em></strong>中修改如下部分,添加头像照片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line"># in theme directory(source/images): /images/avatar.gif</span><br><span class="line"># in site  directory(source/uploads): /uploads/avatar.gif</span><br><span class="line">avatar: /images/IMG_3428.JPG</span><br></pre></td></tr></table></figure></p>
 <h3 id="其他主题配置"><a href="#其他主题配置" class="headerlink" title="其他主题配置"></a>其他主题配置</h3><p>其他主题配置可参考<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">next使用文档</a>，Git上的<a href="https://github.com/iissnan/hexo-theme-next/issues" target="_blank" rel="external">有关主题的问答</a></p>
 <h2 id="域名配置"><a href="#域名配置" class="headerlink" title="域名配置"></a>域名配置</h2><p>这里讲述在阿里云上购买的域名如何配置，<strong>登陆阿里云-控制台-域名服务-域名</strong>，选择需要配置的域名，点击解析。<br><img src="http://upload-images.jianshu.io/upload_images/3800720-1f86822ae3bd011a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="域名配置"><br>删除默认所有<strong>主机记录为@</strong>的记录，添加解析参考如下：<br><img src="http://upload-images.jianshu.io/upload_images/3800720-2e95d1e65c6a1c03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加解析"></p>
-<p>在<strong><em>blog\source\</em></strong>文件夹下新建文件CNAME（在此新建文件，可以保证hexo d的时候不会删除掉），文本打开编辑，添加个人购买的域名，例如<a href="http://he-zhao.cn" target="_blank" rel="external"><strong>he-zhao.cn</strong></a><br><img src="http://upload-images.jianshu.io/upload_images/3800720-82d99a87346642d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CNAME"><br>重新部署<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g #需要先生成静态文件</span><br><span class="line">$ hexo d #将代码部署到github</span><br></pre></td></tr></table></figure></p>
+<p>在<strong><em>blog\source\</em></strong>文件夹下新建文件CNAME（在此新建文件，可以保证hexo d的时候不会删除掉），文本打开编辑，添加个人购买的域名，例如<a href="http://he-zhao.cn"><strong>he-zhao.cn</strong></a><br><img src="http://upload-images.jianshu.io/upload_images/3800720-82d99a87346642d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CNAME"><br>重新部署<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g #需要先生成静态文件</span><br><span class="line">$ hexo d #将代码部署到github</span><br></pre></td></tr></table></figure></p>
 <p>至此域名绑定就完成了，访问自己的域名时，会显示github pages的页面。</p>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>个人博客网站建好了，更重要的是好好记录。最后<strong><a href="http://he-zhao.cn" target="_blank" rel="external">个人博客地址</a></strong>希望支持，后期会增加一些技术博客，希望支持。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>个人博客网站建好了，更重要的是好好记录。最后<strong><a href="http://he-zhao.cn">个人博客地址</a></strong>希望支持，后期会增加一些技术博客，希望支持。</p>
 
       
     </div>
@@ -487,7 +487,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/" title="个人博客搭建与配置：Hexo-github-域名绑定">http://yoursite.com/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/</a>
+    <a href="http://he-zhao.cn/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/" title="个人博客搭建与配置：Hexo-github-域名绑定">http://he-zhao.cn/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -869,7 +869,7 @@ var jiathis_config={
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/';
+          this.page.url = 'http://he-zhao.cn/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/';
           this.page.identifier = '2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/';
           this.page.title = '个人博客搭建与配置：Hexo-github-域名绑定';
         };
