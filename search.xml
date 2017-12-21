@@ -8,9 +8,9 @@
         <category>JStorm</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>JStorm</tag>
         <tag>Storm</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -21,9 +21,9 @@
         <category>JStorm</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>JStorm</tag>
         <tag>Storm</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -35,8 +35,8 @@
       </categories>
       <tags>
         <tag>JStorm</tag>
-        <tag>安装</tag>
         <tag>java</tag>
+        <tag>安装</tag>
       </tags>
   </entry>
   <entry>
@@ -47,8 +47,8 @@
         <category>Elasticsearch</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>Elasticsearch</tag>
+        <tag>Java</tag>
         <tag>性能优化</tag>
       </tags>
   </entry>
@@ -71,8 +71,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Hello World</tag>
         <tag>安装</tag>
+        <tag>Hello World</tag>
       </tags>
   </entry>
 </search>
