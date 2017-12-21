@@ -34,9 +34,9 @@
         <category>JStorm</category>
       </categories>
       <tags>
+        <tag>安装</tag>
         <tag>JStorm</tag>
         <tag>java</tag>
-        <tag>安装</tag>
       </tags>
   </entry>
   <entry>
@@ -71,8 +71,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>安装</tag>
         <tag>Hello World</tag>
+        <tag>安装</tag>
       </tags>
   </entry>
 </search>
