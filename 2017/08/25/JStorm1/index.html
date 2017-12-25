@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Pegasus , Blog" />
+  <meta name="keywords" content="JStorm,Storm,大数据,流计算," />
 
 
 
@@ -77,16 +77,21 @@
 
 
 
-<meta name="description" content="记录生活，写点东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pegasus">
-<meta property="og:url" content="http://he-zhao.cn/categories/Elasticsearch/index.html">
+<meta name="description" content="1、集群架构JStorm从设计的角度，就是一个典型的调度系统，简单集群的架构如下图所示，其中Nimbus可增加一个备节点，多个Supervisor节点组成任务执行集群。">
+<meta name="keywords" content="JStorm,Storm,大数据,流计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JStorm：概念与编程模型">
+<meta property="og:url" content="http://he-zhao.cn/2017/08/25/JStorm1/index.html">
 <meta property="og:site_name" content="Pegasus">
-<meta property="og:description" content="记录生活，写点东西">
+<meta property="og:description" content="1、集群架构JStorm从设计的角度，就是一个典型的调度系统，简单集群的架构如下图所示，其中Nimbus可增加一个备节点，多个Supervisor节点组成任务执行集群。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-fa7461040b8f2239.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-078fa4b8b4b17ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-12-25T06:50:04.885Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pegasus">
-<meta name="twitter:description" content="记录生活，写点东西">
+<meta name="twitter:title" content="JStorm：概念与编程模型">
+<meta name="twitter:description" content="1、集群架构JStorm从设计的角度，就是一个典型的调度系统，简单集群的架构如下图所示，其中Nimbus可增加一个备节点，多个Supervisor节点组成任务执行集群。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3800720-fa7461040b8f2239.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -116,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://he-zhao.cn/categories/Elasticsearch/"/>
+  <link rel="canonical" href="http://he-zhao.cn/2017/08/25/JStorm1/"/>
 
 
 
 
 
-  <title>分类: Elasticsearch | Pegasus</title>
+  <title>JStorm：概念与编程模型 | Pegasus</title>
   
 
 
@@ -151,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -289,55 +294,273 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>Elasticsearch<small>分类</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2017/08/25/JStorm1/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pegasus.He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_3428.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pegasus">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/03/18/elasticsearch/" itemprop="url">
-              
-                <span itemprop="name">提高Elasticsearch性能的配置建议</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">JStorm：概念与编程模型</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-18T00:00:00+08:00"
-              content="2017-03-18" >
-          03-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T00:00:00+08:00">
+                2017-08-25
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JStorm/" itemprop="url" rel="index">
+                    <span itemprop="name">JStorm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/25/JStorm1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/25/JStorm1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1、集群架构"><a href="#1、集群架构" class="headerlink" title="1、集群架构"></a>1、集群架构</h3><p>JStorm从设计的角度，就是一个典型的调度系统，简单集群的架构如下图所示，其中Nimbus可增加一个备节点，多个Supervisor节点组成任务执行集群。<br><img src="http://upload-images.jianshu.io/upload_images/3800720-fa7461040b8f2239.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="简单集群示意图"><br><a id="more"></a></p>
+<h4 id="1-1、Nimbus"><a href="#1-1、Nimbus" class="headerlink" title="1.1、Nimbus"></a>1.1、Nimbus</h4><p>Nimbus是作为整个集群的调度器角色，负责分发topology代码、分配任务，监控集群运行状态等，其主要通过ZK与supervisor交互。可以和Supervisor运行在同一物理机上，JStorm中Nimbus可采用主从备份，支持热切。</p>
+<h4 id="1-2、Supervisor"><a href="#1-2、Supervisor" class="headerlink" title="1.2、Supervisor"></a>1.2、Supervisor</h4><p>Supervisor 是集群中任务的执行者，负责运行具体任务以及关闭任务。其从ZK中监听nimbus的指令，然后接收分发代码和任务并执行、监控反馈任务执行情况。</p>
+<h4 id="1-3-、Zookeeper"><a href="#1-3-、Zookeeper" class="headerlink" title="1.3 、Zookeeper"></a>1.3 、Zookeeper</h4><p>ZK是整个系统中的协调者，Nimbus的任务调度通过ZK下发至Supervisor来执行。</p>
+<h3 id="2、Topology编程模型"><a href="#2、Topology编程模型" class="headerlink" title="2、Topology编程模型"></a>2、Topology编程模型</h3><p>Topology是一个可以在JStorm中运行的任务的抽象表达，在JStorm的topology中，有两种组件：<strong>spout和bolt。</strong>下面是一张比较经典的Topology结构图。每一个topology，既可以有多个spout，代表同时从多个数据源接收消息，也可以多个bolt，来执行不同的业务逻辑。<strong>一个topology会一直运行直到你手动kill掉，JStorm自动重新分配执行失败的任务。</strong><br>在JStorm中有对于流stream的抽象，流是一个不间断的无界的连续tuple，注意JStorm在建模事件流时，把流中的事件抽象为tuple即元组。<br>我们可以认为spout就是一个一个的水龙头，并且每个水龙头里流出的水是不同的tuple，我们想拿到哪种水tuple就拧开哪个水龙头，然后使用管道将水龙头的水tuple导向到一个水处理器（bolt），水处理器bolt处理后再使用管道导向另一个处理器或者存入容器中。<br><img src="http://upload-images.jianshu.io/upload_images/3800720-078fa4b8b4b17ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Topology示意图"><br>JStorm将上图抽象为Topology即拓扑，拓扑结构是<strong>有向无环的</strong>，拓扑是Jstorm中最高层次的一个抽象概念，它可以被提交到Jstorm集群执行，一个拓扑就是一个数据流转换图，图中每个节点是一个spout或者bolt，图中的边表示bolt订阅了哪些流，当spout或者bolt发送元组到流时，它就发送元组到每个订阅了该流的bolt。</p>
+<h4 id="2-1、spout"><a href="#2-1、spout" class="headerlink" title="2.1、spout"></a>2.1、spout</h4><p>JStorm认为每个stream都有一个stream源，也就是原始元组的源头，所以它将这个源头抽象为spout，spout可能是连接消息中间件（如MetaQ， Kafka， TBNotify等），并不断发出消息，也可能是从某个队列中不断读取队列元素并装配为tuple发射。<br>JStorm框架对spout组件定义了一个主要方法：<strong>nextTuple</strong>，顾名思义，就是获取下一条消息。执行时，可以理解成JStorm框架会不停地调这个接口，以从数据源拉取数据并往bolt发送数据。<br>Tuple是一次消息传递的基本单元，tuple里的每个字段一个名字,<strong>并且不同tuple的对应字段的类型必须一样。</strong>tuple的字段类型可以是： integer, long, short, byte, string, double, float, boolean和byte array。还可以自定义类型，只要实现对应的序列化器。<br>JStorm中与spout相关的接口主要是<strong>ISpout和IRichSpout、IBatchSpout</strong>，后两接口实现了对ISpout接口的上层封装。</p>
+<p><strong>ISpout接口主要方法：</strong><br><code>open：</code>在worker中初始化该ISpout时调用，一般用来设置一些属性：比如从spring容器中获取对应的Bean。<br><code>close：</code>和open相对应（在要关闭的时候调用）。<br><code>activate：</code>从非活动状态变为活动状态时调用。<br><code>deactivate：</code>和activate相对应（从活动状态变为非活动状态时调用）。<br><code>nextTuple：</code>JStorm希望在每次调用该方法的时候，它会通过collector.emit发射一个tuple。<br><code>ack：</code>jstorm发现msgId对应的tuple被成功地完整消费会调用该方法。<br><code>fail：</code>和ack相对应（jstorm发现某个tuple在某个环节失败了）。和ack一起保证tuple一定被处理。</p>
+<h4 id="2-2、bolt"><a href="#2-2、bolt" class="headerlink" title="2.2、bolt"></a>2.2、bolt</h4><p>JStorm将tuple的中间处理过程抽象为Bolt，bolt可以消费任意数量的输入流，只要将流方向导向该bolt，同时它也可以发送新的流给其他bolt使用，这样一来，只要打开特定的spout（管口）再将spout中流出的tuple导向特定的bolt，然后bolt对导入的流做处理后再导向其他bolt或者目的地。<br>bolt代表处理逻辑，bolt收到消息之后，对消息做处理（即执行用户的业务逻辑），处理完以后，既可以将处理后的消息继续发送到下游的bolt，这样会形成一个处理流水线（不过更复杂的情况应该是个有向图）；也可以直接结束。<br>bolt组件主要方法：<strong>execute</strong>，这个接口就是用户用来处理业务逻辑的地方。<br>通常一个流水线的最后一个bolt，会做一些数据的存储工作，比如将实时计算出来的数据写入DB、HBase等，以供前台业务进行查询和展现。Bolts可以发射多条消息流， 使用OutputFieldsDeclarer.declareStream定义stream，使用OutputCollector.emit来选择要发射的stream。<br>在保证不丢消息的场景中，在bolts必须要为它处理的每一个tuple调用OutputCollector的<strong>ack方法</strong>，以通知JStorm这个tuple被处理完成了，从而通知这个tuple的发射者spouts。 一般的流程是： bolts处理一个输入tuple, 发射0个或者多个tuple, 然后调用ack通知JStorm自己已经处理过这个tuple了。JStorm提供了一个IBasicBolt会自动调用ack。<br>JStorm中与Bolt相关的接口主要是<strong>IBolt，IRichBolt，IBasicBolt和IBatchBolt，</strong>后面接口实现了对IBolt接口的上层封装。</p>
+<p><strong>IBolt接口的主要方法：</strong><br><code>prepare：</code>在worker中初始化该IBolt时调用，一般用来设置一些属性：比如从spring容器中获取对应的Bean。<br><code>cleanup：</code>和prepare相对应（在显示关闭topology的时候调用）<br><code>execute：</code>处理jstorm发送过来的tuple。</p>
+<h4 id="2-3、Tuple"><a href="#2-3、Tuple" class="headerlink" title="2.3、Tuple"></a>2.3、Tuple</h4><p>JStorm将流中数据抽象为tuple，一个tuple就是一个值列表value list，list中的每个value都有一个name，tuple可以由任意类型组合而成，因为storm是分布式的，所以它需要知道在task间如何序列化和反序列化数据的。storm使用Kryo进行序列化，Kryo是java开发中一个快速灵活序列器。默认情况下，storm可以序列化基础类型，比如<strong>字符串，字节，数组，ArrayList, HashMap, HashSet和 Clojure 集合类型</strong>，如果需要使用其他类型，需要<strong>自定义序列器</strong>。拓扑的每个节点都要说明它所发射出的元组的字段的name，其他节点只需要订阅该name就可以接收处理。<br>在spout和Bolt组件中，使用<strong>declareOutputFields</strong>方法定义发射出的tuple的字段名。</p>
+<h3 id="3、小结"><a href="#3、小结" class="headerlink" title="3、小结"></a>3、小结</h3><p>本文主要讲述了JStorm中集群的架构以及Topology编程模型方面的概念知识，后续会更深入的写一些实践、运维、原理等方面的文章。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weinxin.jpg" alt="Pegasus.He 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Pegasus.He 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Pegasus.He
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://he-zhao.cn/2017/08/25/JStorm1/" title="JStorm：概念与编程模型">http://he-zhao.cn/2017/08/25/JStorm1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JStorm/" rel="tag"># JStorm</a>
+          
+            <a href="/tags/Storm/" rel="tag"># Storm</a>
+          
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
+          
+            <a href="/tags/流计算/" rel="tag"># 流计算</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/18/elasticsearch/" rel="next" title="提高Elasticsearch性能的配置建议">
+                <i class="fa fa-chevron-left"></i> 提高Elasticsearch性能的配置建议
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/15/如何本地调试-JStorm-程序/" rel="prev" title="如何本地调试-JStorm程序">
+                如何本地调试-JStorm程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -345,6 +568,17 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
 
         </div>
         
@@ -365,8 +599,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -452,6 +695,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、集群架构"><span class="nav-number">1.</span> <span class="nav-text">1、集群架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1、Nimbus"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、Nimbus</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2、Supervisor"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、Supervisor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-、Zookeeper"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 、Zookeeper</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、Topology编程模型"><span class="nav-number">2.</span> <span class="nav-text">2、Topology编程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1、spout"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、spout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2、bolt"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、bolt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3、Tuple"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、Tuple</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、小结"><span class="nav-number">3.</span> <span class="nav-text">3、小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -581,6 +840,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -598,6 +861,18 @@
       <script id="dsq-count-scr" src="https://pegasushe.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://he-zhao.cn/2017/08/25/JStorm1/';
+          this.page.identifier = '2017/08/25/JStorm1/';
+          this.page.title = 'JStorm：概念与编程模型';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pegasushe.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
