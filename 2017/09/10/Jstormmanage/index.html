@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Pegasus , Blog" />
+  <meta name="keywords" content="JStorm,Storm,大数据,流计算," />
 
 
 
@@ -77,17 +77,22 @@
 
 
 
-<meta name="description" content="记录生活，写点东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://he-zhao.cn/categories/index.html">
+<meta name="description" content="前一篇文章 JStorm：概念与编程模型 介绍了JStorm的基本概念以及编程模型方面的知识，本篇主要介绍自己对JStorm的任务调度方面的认识，主要从三个方面介绍：  调度角色 调度方法 自定义调度">
+<meta name="keywords" content="JStorm,Storm,大数据,流计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JStorm：任务调度">
+<meta property="og:url" content="http://he-zhao.cn/2017/09/10/Jstormmanage/index.html">
 <meta property="og:site_name" content="Pegasus">
-<meta property="og:description" content="记录生活，写点东西">
+<meta property="og:description" content="前一篇文章 JStorm：概念与编程模型 介绍了JStorm的基本概念以及编程模型方面的知识，本篇主要介绍自己对JStorm的任务调度方面的认识，主要从三个方面介绍：  调度角色 调度方法 自定义调度">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-21T08:11:21.772Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-b6008571bbd49de0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-1cca31136d48c170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-d7472b32afa5ca05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-06T12:20:09.770Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="记录生活，写点东西">
+<meta name="twitter:title" content="JStorm：任务调度">
+<meta name="twitter:description" content="前一篇文章 JStorm：概念与编程模型 介绍了JStorm的基本概念以及编程模型方面的知识，本篇主要介绍自己对JStorm的任务调度方面的认识，主要从三个方面介绍：  调度角色 调度方法 自定义调度">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3800720-b6008571bbd49de0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -117,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://he-zhao.cn/categories/"/>
+  <link rel="canonical" href="http://he-zhao.cn/2017/09/10/Jstormmanage/"/>
 
 
 
 
 
-  <title>categories | Pegasus</title>
+  <title>JStorm：任务调度 | Pegasus</title>
   
 
 
@@ -292,40 +297,313 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2017/09/10/Jstormmanage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pegasus.He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_3428.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pegasus">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">categories</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 3 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Elasticsearch/">Elasticsearch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JStorm/">JStorm</a><span class="category-list-count">5</span></li></ul>
-            </div>
-          </div>
+          <h2 class="post-title" itemprop="name headline">JStorm：任务调度</h2>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T00:00:00+08:00">
+                2017-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JStorm/" itemprop="url" rel="index">
+                    <span itemprop="name">JStorm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/10/Jstormmanage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/10/Jstormmanage/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>前一篇文章 <a href="https://www.jianshu.com/p/36394f897d36" target="_blank" rel="external">JStorm：概念与编程模型</a> 介绍了JStorm的基本概念以及编程模型方面的知识，本篇主要介绍自己对JStorm的任务调度方面的认识，主要从三个方面介绍：</p>
+<ul>
+<li><strong>调度角色</strong></li>
+<li><strong>调度方法</strong></li>
+<li><strong>自定义调度</strong></li>
+</ul>
+<a id="more"></a>
+<h3 id="调度角色"><a href="#调度角色" class="headerlink" title="调度角色"></a>调度角色</h3><p><img src="http://upload-images.jianshu.io/upload_images/3800720-b6008571bbd49de0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="任务角色结构"><br>上图是JStorm中一个topology对应的任务执行结构，其中worker是进程，executor对应于线程，task对应着spout或者bolt组件。</p>
+<h4 id="Worker"><a href="#Worker" class="headerlink" title="Worker"></a>Worker</h4><p>Worker是task的容器， <strong>同一个worker只会执行同一个topology相关的task。</strong> 一个topology可能会在一个或者多个worker（工作进程）里面执行，每个worker执行整个topology的一部分。比如，对于并行度是300的topology来说，如果我们使用50个工作进程来执行，那么每个工作进程会处理其中的6个tasks。Storm会尽量均匀的工作分配给所有的worker。</p>
+<h4 id="Executor"><a href="#Executor" class="headerlink" title="Executor"></a>Executor</h4><p>Executor是在worker中的执行线程，在同一类executor中，要么全部是同一个bolt类的task，要么全部是同一个spout类的task，需要注意的是， <strong>一个executor只能同时运行一个task，创建时将多个task设置在一个executor中，在前期Storm中主要考虑的是后期线程扩展（待验证），但是在JStorm中可以在rebalance时改变Task的数量，所以不需要将task数量大于executor。</strong></p>
+<h4 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h4><p>Task是真正任务的执行者，对应创建topology时建立的一个bolt或者spout组件。每一个spout和bolt会被当作很多task在整个集群里执行。可以调用TopologyBuilder类的setSpout和setBolt来设置并行度（也就是有多少个task）。</p>
+<h3 id="调度方法"><a href="#调度方法" class="headerlink" title="调度方法"></a>调度方法</h3><h4 id="默认调度算法"><a href="#默认调度算法" class="headerlink" title="默认调度算法"></a>默认调度算法</h4><p>默认调度算法遵循以下的原则：</p>
+<ol>
+<li>任务调度算法以worker为维度，尽量将平均分配到各个supervisor上；</li>
+<li>以worker为单位，确认worker与task数目大致的对应关系(注意在这之前已经其他拓扑占用利用的worker不再参与本次动作)；</li>
+<li>建立task-worker关系的优先级依次为：尽量避免同类task在同一work和supervisor下的情况，尽量保证task在worker和supervisor基准上平均分配，尽量保证有直接信息流传输的task在同一worker下。</li>
+<li>调度过程中正在进行的调度动作不会对已发生的调度动作产生影响</li>
+</ol>
+<h4 id="调度示例"><a href="#调度示例" class="headerlink" title="调度示例"></a>调度示例</h4><p>如下是一个topology创建时配置代码，以及运行时的示意图。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//创建topology配置代码</span><br><span class="line">Config conf = new Config();</span><br><span class="line">conf.setNumWorkers(2); // use two worker processes</span><br><span class="line">topologyBuilder.setSpout(&quot;blue-spout&quot;, new BlueSpout(), 2);</span><br><span class="line">topologyBuilder.setBolt(&quot;green-bolt&quot;, new GreenBolt(), 2)</span><br><span class="line">               .setNumTasks(4)</span><br><span class="line">               .shuffleGrouping(&quot;blue-spout&quot;);</span><br><span class="line">topologyBuilder.setBolt(&quot;yellow-bolt&quot;, new YellowBolt(), 6)</span><br><span class="line">               .shuffleGrouping(&quot;green-bolt&quot;);</span><br><span class="line">StormSubmitter.submitTopology(&quot;mytopology&quot;, conf,</span><br><span class="line">                              topologyBuilder.createTopology());</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3800720-1cca31136d48c170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="任务调度结果示意图"><br>参考以上代码，以及任务调度算法，该拓扑中，设为worker为2，蓝色Spout并发设置为2，task默认与并发相同为2；绿色Bolt执行并发为2，但设置其task为4，所以每个executor中有两个Task，黄色Bolt并发为6，task默认与并发相同为6。<br>图中两个worker是一致的，可以认为是JStorm分配任务时做的权衡，尽量分配的均匀，不代表所有情况都是如此。</p>
+<h4 id="分发过程"><a href="#分发过程" class="headerlink" title="分发过程"></a>分发过程</h4><p><img src="http://upload-images.jianshu.io/upload_images/3800720-d7472b32afa5ca05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Storm任务分发过程"><br>上图是storm的示例，JStorm雷同。<br>JStorm任务分发过程：</p>
+<ol>
+<li>客户端提交拓扑到nimbus，并开始执行；</li>
+<li>Nimbus针对该拓扑建立本地的目录，根据topology的配置计算task，分配task，在zookeeper上建立assignments节点存储task和supervisor机器节点中woker的对应关系；</li>
+<li>在zookeeper上创建taskbeats节点来监控task的心跳；启动topology。</li>
+<li>各Supervisor去zookeeper上获取分配的tasks，启动多个woker进行，每个woker生成task；根据topology信息初始化建立task之间的连接。</li>
+</ol>
+<h3 id="自定义调度"><a href="#自定义调度" class="headerlink" title="自定义调度"></a>自定义调度</h3><p>JStorm支持一下自定义调度设置：</p>
+<ol>
+<li><p>设置每个worker的默认内存大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigExtension.setMemSizePerWorker(Map conf, long memSize)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置每个worker的cgroup,cpu权重</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigExtension.setCpuSlotNumPerWorker(Map conf, int slotNum)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置是否使用旧的分配方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigExtension.setUseOldAssignment(Map conf, boolean useOld)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置强制某个component的task 运行在不同的节点上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigExtension.setTaskOnDifferentNode(Map componentConf, boolean isIsolate)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意，这个配置componentConf是component的配置， 需要执行addConfigurations 加入到spout或bolt的configuration当中</p>
+<ol>
+<li>自定义worker分配<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">WorkerAssignment worker = new WorkerAssignment();</span><br><span class="line">worker.addComponent(String compenentName, Integer num);//在这个worker上增加一个task</span><br><span class="line">worker.setHostName(String hostName);//强制这个worker在某台机器上</span><br><span class="line">worker.setJvm(String jvm);//设置这个worker的jvm参数</span><br><span class="line">worker.setMem(long mem); //设置这个worker的内存大小</span><br><span class="line">worker.setCpu(int slotNum); //设置cpu的权重大小</span><br><span class="line">ConfigExtension.setUserDefineAssignment(Map conf, List&lt;WorkerAssignment&gt; userDefines)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注:每一个worker的参数并不需要被全部设置,worker属性在合法的前提下即使只设置了部分参数也仍会生效</p>
+<ol>
+<li>强制topology运行在一些supervisor上<br>在实际应用中， 常常一些机器部署了本地服务（比如本地DB）， 为了提高性能， 让这个topology的所有task强制运行在这些机器上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conf.put(Config.ISOLATION_SCHEDULER_MACHINES, List&lt;String&gt; isolationHosts)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>conf 是topology的configuration</p>
+<p><strong>转载请标明出处</strong></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weinxin.jpg" alt="Pegasus.He 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Pegasus.He 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Pegasus.He
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://he-zhao.cn/2017/09/10/Jstormmanage/" title="JStorm：任务调度">http://he-zhao.cn/2017/09/10/Jstormmanage/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JStorm/" rel="tag"># JStorm</a>
+          
+            <a href="/tags/Storm/" rel="tag"># Storm</a>
+          
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
+          
+            <a href="/tags/流计算/" rel="tag"># 流计算</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/25/JStorm1/" rel="next" title="JStorm：概念与编程模型">
+                <i class="fa fa-chevron-left"></i> JStorm：概念与编程模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/15/如何本地调试-JStorm-程序/" rel="prev" title="如何本地调试-JStorm程序">
+                如何本地调试-JStorm程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
   </div>
 
 
@@ -334,6 +612,17 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
 
         </div>
         
@@ -354,8 +643,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -441,6 +739,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#调度角色"><span class="nav-number">1.</span> <span class="nav-text">调度角色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Worker"><span class="nav-number">1.1.</span> <span class="nav-text">Worker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Executor"><span class="nav-number">1.2.</span> <span class="nav-text">Executor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Task"><span class="nav-number">1.3.</span> <span class="nav-text">Task</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度方法"><span class="nav-number">2.</span> <span class="nav-text">调度方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#默认调度算法"><span class="nav-number">2.1.</span> <span class="nav-text">默认调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调度示例"><span class="nav-number">2.2.</span> <span class="nav-text">调度示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分发过程"><span class="nav-number">2.3.</span> <span class="nav-text">分发过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义调度"><span class="nav-number">3.</span> <span class="nav-text">自定义调度</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -591,6 +905,18 @@
       <script id="dsq-count-scr" src="https://pegasushe.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://he-zhao.cn/2017/09/10/Jstormmanage/';
+          this.page.identifier = '2017/09/10/Jstormmanage/';
+          this.page.title = 'JStorm：任务调度';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pegasushe.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
