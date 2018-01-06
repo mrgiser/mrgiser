@@ -77,22 +77,21 @@
 
 
 
-<meta name="description" content="前一篇文章 JStorm：概念与编程模型 介绍了JStorm的基本概念以及编程模型方面的知识，本篇主要介绍自己对JStorm的任务调度方面的认识，主要从三个方面介绍：  调度角色 调度方法 自定义调度">
+<meta name="description" content="JStorm：概念与编程模型JStorm：任务调度示例功能说明：统计单词出现的次数，spout将持续输入的一句句话作为输入流，bolt将一句话分割成单词，最后统计每个单词出现的次数。">
 <meta name="keywords" content="JStorm,Storm,大数据,流计算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JStorm：任务调度">
-<meta property="og:url" content="http://he-zhao.cn/2017/09/10/Jstormmanage/index.html">
+<meta property="og:title" content="JStorm：单词计数-开发示例">
+<meta property="og:url" content="http://he-zhao.cn/2017/09/12/WordCountTopology/index.html">
 <meta property="og:site_name" content="Pegasus">
-<meta property="og:description" content="前一篇文章 JStorm：概念与编程模型 介绍了JStorm的基本概念以及编程模型方面的知识，本篇主要介绍自己对JStorm的任务调度方面的认识，主要从三个方面介绍：  调度角色 调度方法 自定义调度">
+<meta property="og:description" content="JStorm：概念与编程模型JStorm：任务调度示例功能说明：统计单词出现的次数，spout将持续输入的一句句话作为输入流，bolt将一句话分割成单词，最后统计每个单词出现的次数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-b6008571bbd49de0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-1cca31136d48c170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-d7472b32afa5ca05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-01-06T12:20:09.770Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-74bcf9bfdeab0e95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3800720-68b385d3b6aa0cfc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-06T12:56:29.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JStorm：任务调度">
-<meta name="twitter:description" content="前一篇文章 JStorm：概念与编程模型 介绍了JStorm的基本概念以及编程模型方面的知识，本篇主要介绍自己对JStorm的任务调度方面的认识，主要从三个方面介绍：  调度角色 调度方法 自定义调度">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3800720-b6008571bbd49de0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="JStorm：单词计数-开发示例">
+<meta name="twitter:description" content="JStorm：概念与编程模型JStorm：任务调度示例功能说明：统计单词出现的次数，spout将持续输入的一句句话作为输入流，bolt将一句话分割成单词，最后统计每个单词出现的次数。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3800720-74bcf9bfdeab0e95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://he-zhao.cn/2017/09/10/Jstormmanage/"/>
+  <link rel="canonical" href="http://he-zhao.cn/2017/09/12/WordCountTopology/"/>
 
 
 
 
 
-  <title>JStorm：任务调度 | Pegasus</title>
+  <title>JStorm：单词计数-开发示例 | Pegasus</title>
   
 
 
@@ -309,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2017/09/10/Jstormmanage/">
+    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2017/09/12/WordCountTopology/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pegasus.He">
@@ -326,7 +325,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">JStorm：任务调度</h2>
+          <h2 class="post-title" itemprop="name headline">JStorm：单词计数-开发示例</h2>
         
 
         <div class="post-meta">
@@ -338,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T00:00:00+08:00">
-                2017-09-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-12T00:00:00+08:00">
+                2017-09-12
               </time>
             
 
@@ -379,9 +378,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/10/Jstormmanage/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/12/WordCountTopology/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/10/Jstormmanage/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/12/WordCountTopology/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -409,59 +408,16 @@
       
 
       
-        <p>前一篇文章 <a href="https://www.jianshu.com/p/36394f897d36" target="_blank" rel="external">JStorm：概念与编程模型</a> 介绍了JStorm的基本概念以及编程模型方面的知识，本篇主要介绍自己对JStorm的任务调度方面的认识，主要从三个方面介绍：</p>
-<ul>
-<li><strong>调度角色</strong></li>
-<li><strong>调度方法</strong></li>
-<li><strong>自定义调度</strong></li>
-</ul>
-<a id="more"></a>
-<h3 id="调度角色"><a href="#调度角色" class="headerlink" title="调度角色"></a>调度角色</h3><p><img src="http://upload-images.jianshu.io/upload_images/3800720-b6008571bbd49de0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="任务角色结构"><br>上图是JStorm中一个topology对应的任务执行结构，其中worker是进程，executor对应于线程，task对应着spout或者bolt组件。</p>
-<h4 id="Worker"><a href="#Worker" class="headerlink" title="Worker"></a>Worker</h4><p>Worker是task的容器， <strong>同一个worker只会执行同一个topology相关的task。</strong> 一个topology可能会在一个或者多个worker（工作进程）里面执行，每个worker执行整个topology的一部分。比如，对于并行度是300的topology来说，如果我们使用50个工作进程来执行，那么每个工作进程会处理其中的6个tasks。Storm会尽量均匀的工作分配给所有的worker。</p>
-<h4 id="Executor"><a href="#Executor" class="headerlink" title="Executor"></a>Executor</h4><p>Executor是在worker中的执行线程，在同一类executor中，要么全部是同一个bolt类的task，要么全部是同一个spout类的task，需要注意的是， <strong>一个executor只能同时运行一个task，创建时将多个task设置在一个executor中，在前期Storm中主要考虑的是后期线程扩展（待验证），但是在JStorm中可以在rebalance时改变Task的数量，所以不需要将task数量大于executor。</strong></p>
-<h4 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h4><p>Task是真正任务的执行者，对应创建topology时建立的一个bolt或者spout组件。每一个spout和bolt会被当作很多task在整个集群里执行。可以调用TopologyBuilder类的setSpout和setBolt来设置并行度（也就是有多少个task）。</p>
-<h3 id="调度方法"><a href="#调度方法" class="headerlink" title="调度方法"></a>调度方法</h3><h4 id="默认调度算法"><a href="#默认调度算法" class="headerlink" title="默认调度算法"></a>默认调度算法</h4><p>默认调度算法遵循以下的原则：</p>
-<ol>
-<li>任务调度算法以worker为维度，尽量将平均分配到各个supervisor上；</li>
-<li>以worker为单位，确认worker与task数目大致的对应关系(注意在这之前已经其他拓扑占用利用的worker不再参与本次动作)；</li>
-<li>建立task-worker关系的优先级依次为：尽量避免同类task在同一work和supervisor下的情况，尽量保证task在worker和supervisor基准上平均分配，尽量保证有直接信息流传输的task在同一worker下。</li>
-<li>调度过程中正在进行的调度动作不会对已发生的调度动作产生影响</li>
-</ol>
-<h4 id="调度示例"><a href="#调度示例" class="headerlink" title="调度示例"></a>调度示例</h4><p>如下是一个topology创建时配置代码，以及运行时的示意图。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//创建topology配置代码</span><br><span class="line">Config conf = new Config();</span><br><span class="line">conf.setNumWorkers(2); // use two worker processes</span><br><span class="line">topologyBuilder.setSpout(&quot;blue-spout&quot;, new BlueSpout(), 2);</span><br><span class="line">topologyBuilder.setBolt(&quot;green-bolt&quot;, new GreenBolt(), 2)</span><br><span class="line">               .setNumTasks(4)</span><br><span class="line">               .shuffleGrouping(&quot;blue-spout&quot;);</span><br><span class="line">topologyBuilder.setBolt(&quot;yellow-bolt&quot;, new YellowBolt(), 6)</span><br><span class="line">               .shuffleGrouping(&quot;green-bolt&quot;);</span><br><span class="line">StormSubmitter.submitTopology(&quot;mytopology&quot;, conf,</span><br><span class="line">                              topologyBuilder.createTopology());</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3800720-1cca31136d48c170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="任务调度结果示意图"><br>参考以上代码，以及任务调度算法，该拓扑中，设为worker为2，蓝色Spout并发设置为2，task默认与并发相同为2；绿色Bolt执行并发为2，但设置其task为4，所以每个executor中有两个Task，黄色Bolt并发为6，task默认与并发相同为6。<br>图中两个worker是一致的，可以认为是JStorm分配任务时做的权衡，尽量分配的均匀，不代表所有情况都是如此。</p>
-<h4 id="分发过程"><a href="#分发过程" class="headerlink" title="分发过程"></a>分发过程</h4><p><img src="http://upload-images.jianshu.io/upload_images/3800720-d7472b32afa5ca05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Storm任务分发过程"><br>上图是storm的示例，JStorm雷同。<br>JStorm任务分发过程：</p>
-<ol>
-<li>客户端提交拓扑到nimbus，并开始执行；</li>
-<li>Nimbus针对该拓扑建立本地的目录，根据topology的配置计算task，分配task，在zookeeper上建立assignments节点存储task和supervisor机器节点中woker的对应关系；</li>
-<li>在zookeeper上创建taskbeats节点来监控task的心跳；启动topology。</li>
-<li>各Supervisor去zookeeper上获取分配的tasks，启动多个woker进行，每个woker生成task；根据topology信息初始化建立task之间的连接。</li>
-</ol>
-<h3 id="自定义调度"><a href="#自定义调度" class="headerlink" title="自定义调度"></a>自定义调度</h3><p>JStorm支持一下自定义调度设置：</p>
-<ol>
-<li><p>设置每个worker的默认内存大小</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigExtension.setMemSizePerWorker(Map conf, long memSize)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置每个worker的cgroup,cpu权重</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigExtension.setCpuSlotNumPerWorker(Map conf, int slotNum)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置是否使用旧的分配方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigExtension.setUseOldAssignment(Map conf, boolean useOld)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置强制某个component的task 运行在不同的节点上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConfigExtension.setTaskOnDifferentNode(Map componentConf, boolean isIsolate)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>注意，这个配置componentConf是component的配置， 需要执行addConfigurations 加入到spout或bolt的configuration当中</p>
-<ol>
-<li>自定义worker分配<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">WorkerAssignment worker = new WorkerAssignment();</span><br><span class="line">worker.addComponent(String compenentName, Integer num);//在这个worker上增加一个task</span><br><span class="line">worker.setHostName(String hostName);//强制这个worker在某台机器上</span><br><span class="line">worker.setJvm(String jvm);//设置这个worker的jvm参数</span><br><span class="line">worker.setMem(long mem); //设置这个worker的内存大小</span><br><span class="line">worker.setCpu(int slotNum); //设置cpu的权重大小</span><br><span class="line">ConfigExtension.setUserDefineAssignment(Map conf, List&lt;WorkerAssignment&gt; userDefines)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>注:每一个worker的参数并不需要被全部设置,worker属性在合法的前提下即使只设置了部分参数也仍会生效</p>
-<ol>
-<li>强制topology运行在一些supervisor上<br>在实际应用中， 常常一些机器部署了本地服务（比如本地DB）， 为了提高性能， 让这个topology的所有task强制运行在这些机器上<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conf.put(Config.ISOLATION_SCHEDULER_MACHINES, List&lt;String&gt; isolationHosts)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>conf 是topology的configuration</p>
+        <p><a href="http://he-zhao.cn/2017/08/25/JStorm1/">JStorm：概念与编程模型</a><br><a href="http://he-zhao.cn/2017/09/10/Jstormmanage/">JStorm：任务调度</a><br>示例功能说明：统计单词出现的次数，spout将持续输入的一句句话作为输入流，bolt将一句话分割成单词，最后统计每个单词出现的次数。<br><a id="more"></a></p>
+<h3 id="示例介绍"><a href="#示例介绍" class="headerlink" title="示例介绍"></a>示例介绍</h3><p>如下图所示，单词计数topology由一个spout和下游三个bolt组成。<br><img src="http://upload-images.jianshu.io/upload_images/3800720-74bcf9bfdeab0e95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><strong>SentenceSpout：</strong>向后端发射一个单值tuple组成的数据流，键名“sentence”，tuple如下：<br>{“sentence”：“my name is zhangsan”}<br><strong>SplitSentenceBolt：</strong>订阅SentenceSpout发射的数据流，将“sentence”中的语句分割为一个个单词，向后端发射“word”组成的tuple如下：<br>{“word”：“my”}<br>{“word”：“name”}<br>{“word”：“is”}<br>{“word”：“zhangsan”}<br><strong>WordCountBolt：</strong>订阅SplitSentenceBolt发射的数据流，保存每个特定单词出现的次数，每当bolt收到一个tuple，将对应单词的计数加一，并想后发射该单词当前的计数。<br>{“word”:“my”,“count”:“5”}<br><strong>ReportBolt：</strong>订阅WordCountBolt的输出流，维护一份所有单词对应的计数表，结束时将所有值打印。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>添加Pom.xml依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba.jstorm&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;jstorm-core&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.2.1&lt;/version&gt;</span><br><span class="line">        &lt;!-- &lt;scope&gt;provided&lt;/scope&gt; --&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>SentenceSpout：</strong>继承BaseRichSpout类，在nextTuple方法中生成并向后发射数据流，declareOutputFields方法定义了向后发射数据流tuple的字段名为：sentence。<br><strong>SplitSentenceBolt：</strong>继承BaseRichBolt类，在execute方法中将接收到的tuple分割为单词，并向后传输tuple，declareOutputFields定义了tuple字段为word。<br><strong>WordCountBolt：</strong>继承BaseRichBolt，在execute方法中统计单词出现的次数，本地使用HashMap保存所有单词出现的次数。接收到tuple后更新该单词出现的次数并向后传输tuple，declareOutputFields定义了tuple为”word”, “count”。<br><strong>ReportBolt：</strong>继承BaseRichBolt类，在execute方法中汇总所有单词出现的次数。本地使用HashMap保存所有单词出现的次数。当任务结束时，Cleanup方法打印统计结果。<br><strong>WordCountTopology：</strong>创建topology，定义了Spout以及Bolt之间数据流传输的规则，以及并发数（前后并发为2、2、4、1）。进程（worker）、线程（Executor）与Task之间的关系如下图：<br><img src="http://upload-images.jianshu.io/upload_images/3800720-68b385d3b6aa0cfc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>核心代码参考如下，注意其中的shuffleGrouping设定向后传输数据流为随机，fieldsGrouping按照字段值向后传输数据流，能保证同一个单词由同一个WordCountBolt统计，而globalGrouping保证汇总的bolt是单例。</p>
+<h4 id="WordCountTopology-java"><a href="#WordCountTopology-java" class="headerlink" title="WordCountTopology.java"></a>WordCountTopology.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">//WordCountTopology代码</span><br><span class="line">import storm.blueprints.word.v1.*;</span><br><span class="line">import backtype.storm.Config;</span><br><span class="line">import backtype.storm.LocalCluster;</span><br><span class="line">import backtype.storm.topology.TopologyBuilder;</span><br><span class="line">import backtype.storm.tuple.Fields;</span><br><span class="line">import static storm.blueprints.utils.Utils.*;</span><br><span class="line"></span><br><span class="line">public class WordCountTopology &#123;</span><br><span class="line"></span><br><span class="line">    private static final String SENTENCE_SPOUT_ID = &quot;sentence-spout&quot;;</span><br><span class="line">    private static final String SPLIT_BOLT_ID = &quot;split-bolt&quot;;</span><br><span class="line">    private static final String COUNT_BOLT_ID = &quot;count-bolt&quot;;</span><br><span class="line">    private static final String REPORT_BOLT_ID = &quot;report-bolt&quot;;</span><br><span class="line">    private static final String TOPOLOGY_NAME = &quot;word-count-topology&quot;;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        SentenceSpout spout = new SentenceSpout();</span><br><span class="line">        SplitSentenceBolt splitBolt = new SplitSentenceBolt();</span><br><span class="line">        WordCountBolt countBolt = new WordCountBolt();</span><br><span class="line">        ReportBolt reportBolt = new ReportBolt();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        TopologyBuilder builder = new TopologyBuilder();</span><br><span class="line"></span><br><span class="line">        builder.setSpout(SENTENCE_SPOUT_ID, spout, 2);</span><br><span class="line">        // SentenceSpout --&gt; SplitSentenceBolt</span><br><span class="line">        builder.setBolt(SPLIT_BOLT_ID, splitBolt, 2)</span><br><span class="line">                .setNumTasks(4)</span><br><span class="line">                .shuffleGrouping(SENTENCE_SPOUT_ID);</span><br><span class="line">        // SplitSentenceBolt --&gt; WordCountBolt</span><br><span class="line">        builder.setBolt(COUNT_BOLT_ID, countBolt, 4)</span><br><span class="line">                .fieldsGrouping(SPLIT_BOLT_ID, new Fields(&quot;word&quot;));</span><br><span class="line">        // WordCountBolt --&gt; ReportBolt</span><br><span class="line">        builder.setBolt(REPORT_BOLT_ID, reportBolt)</span><br><span class="line">                .globalGrouping(COUNT_BOLT_ID);</span><br><span class="line"></span><br><span class="line">        Config config = new Config();</span><br><span class="line">        config.setNumWorkers(2);</span><br><span class="line"></span><br><span class="line">        LocalCluster cluster = new LocalCluster();</span><br><span class="line"></span><br><span class="line">        cluster.submitTopology(TOPOLOGY_NAME, config, builder.createTopology());</span><br><span class="line">        waitForSeconds(10);</span><br><span class="line">        cluster.killTopology(TOPOLOGY_NAME);</span><br><span class="line">        cluster.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="SentenceSpout-java"><a href="#SentenceSpout-java" class="headerlink" title="SentenceSpout.java"></a>SentenceSpout.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import backtype.storm.spout.SpoutOutputCollector;</span><br><span class="line">import backtype.storm.task.TopologyContext;</span><br><span class="line">import backtype.storm.topology.OutputFieldsDeclarer;</span><br><span class="line">import backtype.storm.topology.base.BaseRichSpout;</span><br><span class="line">import backtype.storm.tuple.Fields;</span><br><span class="line">import backtype.storm.tuple.Values;</span><br><span class="line">import storm.blueprints.utils.Utils;</span><br><span class="line"></span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class SentenceSpout extends BaseRichSpout &#123;</span><br><span class="line"></span><br><span class="line">    private SpoutOutputCollector collector;</span><br><span class="line">    private String[] sentences = &#123;</span><br><span class="line">        &quot;my dog has fleas&quot;,</span><br><span class="line">        &quot;i like cold beverages&quot;,</span><br><span class="line">        &quot;the dog ate my homework&quot;,</span><br><span class="line">        &quot;don&apos;t have a cow man&quot;,</span><br><span class="line">        &quot;i don&apos;t think i like fleas&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    private int index = 0;</span><br><span class="line"></span><br><span class="line">    public void declareOutputFields(OutputFieldsDeclarer declarer) &#123;</span><br><span class="line">        declarer.declare(new Fields(&quot;sentence&quot;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void open(Map config, TopologyContext context, </span><br><span class="line">            SpoutOutputCollector collector) &#123;</span><br><span class="line">        this.collector = collector;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void nextTuple() &#123;</span><br><span class="line">        this.collector.emit(new Values(sentences[index]));</span><br><span class="line">        index++;</span><br><span class="line">        if (index &gt;= sentences.length) &#123;</span><br><span class="line">            index = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        Utils.waitForMillis(1000);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="SplitSentenceBolt-java"><a href="#SplitSentenceBolt-java" class="headerlink" title="SplitSentenceBolt.java"></a>SplitSentenceBolt.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import backtype.storm.task.OutputCollector;</span><br><span class="line">import backtype.storm.task.TopologyContext;</span><br><span class="line">import backtype.storm.topology.OutputFieldsDeclarer;</span><br><span class="line">import backtype.storm.topology.base.BaseRichBolt;</span><br><span class="line">import backtype.storm.tuple.Fields;</span><br><span class="line">import backtype.storm.tuple.Tuple;</span><br><span class="line">import backtype.storm.tuple.Values;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class SplitSentenceBolt extends BaseRichBolt&#123;</span><br><span class="line">    private OutputCollector collector;</span><br><span class="line"></span><br><span class="line">    public void prepare(Map config, TopologyContext context, OutputCollector collector) &#123;</span><br><span class="line">        this.collector = collector;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void execute(Tuple tuple) &#123;</span><br><span class="line">        String sentence = tuple.getStringByField(&quot;sentence&quot;);</span><br><span class="line">        String[] words = sentence.split(&quot; &quot;);</span><br><span class="line">        for(String word : words)&#123;</span><br><span class="line">            this.collector.emit(new Values(word));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void declareOutputFields(OutputFieldsDeclarer declarer) &#123;</span><br><span class="line">        declarer.declare(new Fields(&quot;word&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="WordCountBolt-java"><a href="#WordCountBolt-java" class="headerlink" title="WordCountBolt.java"></a>WordCountBolt.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import backtype.storm.task.OutputCollector;</span><br><span class="line">import backtype.storm.task.TopologyContext;</span><br><span class="line">import backtype.storm.topology.OutputFieldsDeclarer;</span><br><span class="line">import backtype.storm.topology.base.BaseRichBolt;</span><br><span class="line">import backtype.storm.tuple.Fields;</span><br><span class="line">import backtype.storm.tuple.Tuple;</span><br><span class="line">import backtype.storm.tuple.Values;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class WordCountBolt extends BaseRichBolt&#123;</span><br><span class="line">    private OutputCollector collector;</span><br><span class="line">    private HashMap&lt;String, Long&gt; counts = null;</span><br><span class="line"></span><br><span class="line">    public void prepare(Map config, TopologyContext context, </span><br><span class="line">            OutputCollector collector) &#123;</span><br><span class="line">        this.collector = collector;</span><br><span class="line">        this.counts = new HashMap&lt;String, Long&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void execute(Tuple tuple) &#123;</span><br><span class="line">        String word = tuple.getStringByField(&quot;word&quot;);</span><br><span class="line">        Long count = this.counts.get(word);</span><br><span class="line">        if(count == null)&#123;</span><br><span class="line">            count = 0L;</span><br><span class="line">        &#125;</span><br><span class="line">        count++;</span><br><span class="line">        this.counts.put(word, count);</span><br><span class="line">        this.collector.emit(new Values(word, count));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void declareOutputFields(OutputFieldsDeclarer declarer) &#123;</span><br><span class="line">        declarer.declare(new Fields(&quot;word&quot;, &quot;count&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="ReportBolt-java"><a href="#ReportBolt-java" class="headerlink" title="ReportBolt.java"></a>ReportBolt.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import backtype.storm.task.OutputCollector;</span><br><span class="line">import backtype.storm.task.TopologyContext;</span><br><span class="line">import backtype.storm.topology.OutputFieldsDeclarer;</span><br><span class="line">import backtype.storm.topology.base.BaseRichBolt;</span><br><span class="line">import backtype.storm.tuple.Tuple;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Collections;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class ReportBolt extends BaseRichBolt &#123;</span><br><span class="line"></span><br><span class="line">    private HashMap&lt;String, Long&gt; counts = null;</span><br><span class="line"></span><br><span class="line">    public void prepare(Map config, TopologyContext context, OutputCollector collector) &#123;</span><br><span class="line">        this.counts = new HashMap&lt;String, Long&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void execute(Tuple tuple) &#123;</span><br><span class="line">        String word = tuple.getStringByField(&quot;word&quot;);</span><br><span class="line">        Long count = tuple.getLongByField(&quot;count&quot;);</span><br><span class="line">        this.counts.put(word, count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void declareOutputFields(OutputFieldsDeclarer declarer) &#123;</span><br><span class="line">        // this bolt does not emit anything</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void cleanup() &#123;</span><br><span class="line">        System.out.println(&quot;--- FINAL COUNTS ---&quot;);</span><br><span class="line">        List&lt;String&gt; keys = new ArrayList&lt;String&gt;();</span><br><span class="line">        keys.addAll(this.counts.keySet());</span><br><span class="line">        Collections.sort(keys);</span><br><span class="line">        for (String key : keys) &#123;</span><br><span class="line">            System.out.println(key + &quot; : &quot; + this.counts.get(key));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;--------------&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Utils-java"><a href="#Utils-java" class="headerlink" title="Utils.java"></a>Utils.java</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Utils &#123;</span><br><span class="line"></span><br><span class="line">    public static void waitForSeconds(int seconds) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(seconds * 1000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void waitForMillis(long milliseconds) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(milliseconds);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>转载请标明出处</strong></p>
 
       
@@ -512,7 +468,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://he-zhao.cn/2017/09/10/Jstormmanage/" title="JStorm：任务调度">http://he-zhao.cn/2017/09/10/Jstormmanage/</a>
+    <a href="http://he-zhao.cn/2017/09/12/WordCountTopology/" title="JStorm：单词计数-开发示例">http://he-zhao.cn/2017/09/12/WordCountTopology/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -546,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/25/JStorm1/" rel="next" title="JStorm：概念与编程模型">
-                <i class="fa fa-chevron-left"></i> JStorm：概念与编程模型
+              <a href="/2017/09/10/Jstormmanage/" rel="next" title="JStorm：任务调度">
+                <i class="fa fa-chevron-left"></i> JStorm：任务调度
               </a>
             
           </div>
@@ -556,8 +512,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/12/WordCountTopology/" rel="prev" title="JStorm：单词计数-开发示例">
-                JStorm：单词计数-开发示例 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/15/如何本地调试-JStorm-程序/" rel="prev" title="如何本地调试-JStorm程序">
+                如何本地调试-JStorm程序 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -749,7 +705,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#调度角色"><span class="nav-number">1.</span> <span class="nav-text">调度角色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Worker"><span class="nav-number">1.1.</span> <span class="nav-text">Worker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Executor"><span class="nav-number">1.2.</span> <span class="nav-text">Executor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Task"><span class="nav-number">1.3.</span> <span class="nav-text">Task</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度方法"><span class="nav-number">2.</span> <span class="nav-text">调度方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#默认调度算法"><span class="nav-number">2.1.</span> <span class="nav-text">默认调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调度示例"><span class="nav-number">2.2.</span> <span class="nav-text">调度示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分发过程"><span class="nav-number">2.3.</span> <span class="nav-text">分发过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义调度"><span class="nav-number">3.</span> <span class="nav-text">自定义调度</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例介绍"><span class="nav-number">1.</span> <span class="nav-text">示例介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WordCountTopology-java"><span class="nav-number">2.1.</span> <span class="nav-text">WordCountTopology.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SentenceSpout-java"><span class="nav-number">2.2.</span> <span class="nav-text">SentenceSpout.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SplitSentenceBolt-java"><span class="nav-number">2.3.</span> <span class="nav-text">SplitSentenceBolt.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WordCountBolt-java"><span class="nav-number">2.4.</span> <span class="nav-text">WordCountBolt.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReportBolt-java"><span class="nav-number">2.5.</span> <span class="nav-text">ReportBolt.java</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Utils-java"><span class="nav-number">2.6.</span> <span class="nav-text">Utils.java</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -908,9 +864,9 @@ var jiathis_config={
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://he-zhao.cn/2017/09/10/Jstormmanage/';
-          this.page.identifier = '2017/09/10/Jstormmanage/';
-          this.page.title = 'JStorm：任务调度';
+          this.page.url = 'http://he-zhao.cn/2017/09/12/WordCountTopology/';
+          this.page.identifier = '2017/09/12/WordCountTopology/';
+          this.page.title = 'JStorm：单词计数-开发示例';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://pegasushe.disqus.com/embed.js';
