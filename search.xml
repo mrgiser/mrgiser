@@ -36,8 +36,8 @@
       <tags>
         <tag>JStorm</tag>
         <tag>大数据</tag>
-        <tag>安装</tag>
         <tag>java</tag>
+        <tag>安装</tag>
       </tags>
   </entry>
   <entry>
@@ -90,8 +90,8 @@
         <category>Elasticsearch</category>
       </categories>
       <tags>
-        <tag>Elasticsearch</tag>
         <tag>Java</tag>
+        <tag>Elasticsearch</tag>
         <tag>性能优化</tag>
       </tags>
   </entry>
@@ -107,15 +107,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2013%2F07%2F13%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    <title><![CDATA[Effective Java读书笔记]]></title>
+    <url>%2F2016%2F08%2F13%2FEffectiveJava%2F</url>
+    <content type="text"><![CDATA[创建和销毁对象考虑使用静态工厂代替构造函数 静态工厂具有名称，可读性抢 不必在每次调用时都创建新对象，单例模式 可以返回原类型的子类型对象 在创建类似List Map时，代码简洁 缺点：类如果不含有公有或者受保护的构造器，就不能被子类化；其与静态函数没有区别。 遇到多个构造函数参数时，考虑使用构建器 参数多时并可选，构造函数很多，静态工厂也是如此 构建器，set方法返回this，调用可以连接起来。 使用私有构造器或者枚举类型强化单例属性 使用反射机制，可以调用私有构造器 序列化时，提供readResolve方法保证单一 单元素的枚举类型成为实现单例的最佳方法 避免创建不必要的对象 不需要new String，重用不可变的String对象 注意基本类型与装箱类型，优先使用基本类型，装箱类型每次都会新建。 只有在对象非常重量级时，才考虑使用对象池 消除过期的对象引用 如果一个栈先增长，再收缩；从栈中弹出来的对象将不会被当做垃圾回收。Object[] 内存泄露常见来源：缓存、监听器、其他回调 避免使用终结方法 finalizer通常是不可预测的，也是很危险的，一般情况不适用 中介方法的缺点在于不能保证会被及时的执行 java不保证终结方法会被及时的执行，而且根本不保证他们会被执行 异常发生在终结方法中，警告都不会打出 终结方法有一个非常严重的性能损耗 使用终结方法，记得使用super.finalizer 使用try finally代替 所有对象都通用的方法覆盖equals时，遵守通用约定 类具有自己特有的逻辑相等概念时，覆盖equals 需要满足自反性、对称性、传递性、一致性，null必不相等 覆盖equals时必须覆盖hashCode 不要企图让equals过于智能，加上@Override 覆盖Equals时要覆盖hashCode equals所用信息不变，code多次执行结果不变 equals相等，code相同 equals不同，code可能相同，散列的分散性 不要试图从散列码中排除一个关键部分来提高性能 散列码缓存在对象内部 延迟初始化散列码 始终要覆盖toString toString应该包含对象中包含的所有值得关注的信息 谨慎地覆盖clone final与clone冲突 对于一个为了继承而设计的类，如果未能提供行为良好的受保护的clone方法，它的子类就不可能实现cloneable接口 考虑实现Comparable接口 对象小于、等于、大于指定对象时，返回负数、0、正数 自反性、对称性、传递性 类和接口使类和成员的可访问性最小化 信息隐藏与封装是软件设计的原则 有效的解除组成系统的个模块之间的耦合关系 尽可能的使每个类或成员不被外界访问 私有-&gt;包级私有-&gt;收保护-&gt;公有 受保护的成员应该尽少使用，是对外API的一部分，需要维护 长度非零的数组总是可变，类具有公有的静态final数组，或者返回这域的访问方法，几乎总是错误的 在公有类中使用set、get而不是公有域使可变性最小化 不可变对象比较简单 线程安全、不要求同步 缺点：不同的值都需要一个单独的对象 复合优先与继承 在包内继承，是非常安全的 进行夸包边界的继承，是非常危险的 继承打破了封装性 只有子类真正是超累的子类型时 is-a，才试用继承 接口优与抽象类 java单继承，抽象类受到极大的限制 函数指针实现策略模式 Arrays.sort优先使用静态成员类 静态成员类、非静态成员类、匿名类、局部类 如果成员类不需要访问外围类实例，就使用静态成员类]]></content>
       <categories>
-        <category>Hexo</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>Hello World</tag>
-        <tag>安装</tag>
+        <tag>读书笔记</tag>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>
