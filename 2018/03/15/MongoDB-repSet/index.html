@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Pegasus , Blog" />
+  <meta name="keywords" content="MongoDB," />
 
 
 
@@ -77,16 +77,18 @@
 
 
 
-<meta name="description" content="记录生活，写点东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pegasus | 个人博客">
-<meta property="og:url" content="http://he-zhao.cn/page/2/index.html">
+<meta name="description" content="副本集简介Mongodb副本集由一组Mongod实例（进程）组成，包含一个Primary节点和多个Secondary节点，Mongodb Driver（客户端）的所有数据都写入Primary，Secondary从Primary同步写入的数据，以保持复制集内所有成员存储相同的数据集，提供数据的高可用。副本集带来的架构优点主要有：     集群高可用    读写可分离">
+<meta name="keywords" content="MongoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB副本集详解-角色与选举">
+<meta property="og:url" content="http://he-zhao.cn/2018/03/15/MongoDB-repSet/index.html">
 <meta property="og:site_name" content="Pegasus | 个人博客">
-<meta property="og:description" content="记录生活，写点东西">
+<meta property="og:description" content="副本集简介Mongodb副本集由一组Mongod实例（进程）组成，包含一个Primary节点和多个Secondary节点，Mongodb Driver（客户端）的所有数据都写入Primary，Secondary从Primary同步写入的数据，以保持复制集内所有成员存储相同的数据集，提供数据的高可用。副本集带来的架构优点主要有：     集群高可用    读写可分离">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-15T07:18:09.902Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pegasus | 个人博客">
-<meta name="twitter:description" content="记录生活，写点东西">
+<meta name="twitter:title" content="MongoDB副本集详解-角色与选举">
+<meta name="twitter:description" content="副本集简介Mongodb副本集由一组Mongod实例（进程）组成，包含一个Primary节点和多个Secondary节点，Mongodb Driver（客户端）的所有数据都写入Primary，Secondary从Primary同步写入的数据，以保持复制集内所有成员存储相同的数据集，提供数据的高可用。副本集带来的架构优点主要有：     集群高可用    读写可分离">
 
 
 
@@ -116,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://he-zhao.cn/page/2/"/>
+  <link rel="canonical" href="http://he-zhao.cn/2018/03/15/MongoDB-repSet/"/>
 
 
 
 
 
-  <title>Pegasus | 个人博客</title>
+  <title>MongoDB副本集详解-角色与选举 | Pegasus | 个人博客</title>
   
 
 
@@ -151,8 +153,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -289,9 +290,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -304,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/">
+    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2018/03/15/MongoDB-repSet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pegasus.He">
@@ -321,9 +322,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/" itemprop="url">个人博客搭建与配置：Hexo-github-域名绑定</a></h2>
+          <h2 class="post-title" itemprop="name headline">MongoDB副本集详解-角色与选举</h2>
         
 
         <div class="post-meta">
@@ -335,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-11T20:46:25+08:00">
-                2016-10-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T00:00:00+08:00">
+                2018-03-15
               </time>
             
 
@@ -358,8 +357,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
+                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDB</span>
                   </a>
                 </span>
 
@@ -376,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/15/MongoDB-repSet/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/15/MongoDB-repSet/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,179 +405,142 @@
       
 
       
-        
-          <p>最近想搭建个人的博客网站，查询一些信息以后决定采用<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a><br>+<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>的方式。该方法站在巨人的肩膀上，很是方便快捷，找了个很喜欢的主题，做了点配置就可以，最后在阿里云上买了个域名，成功搞定就差写博客了。这里就说一下建站的整个过程。<br><strong><a href="http://he-zhao.cn">个人博客地址</a></strong><br><a href="http://he-zhao.cn">http://he-zhao.cn</a><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2016/08/13/EffectiveJava/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pegasus.He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_3428.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pegasus | 个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/13/EffectiveJava/" itemprop="url">Effective Java读书笔记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-13T00:00:00+08:00">
-                2016-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/13/EffectiveJava/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/13/EffectiveJava/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="创建和销毁对象"><a href="#创建和销毁对象" class="headerlink" title="创建和销毁对象"></a>创建和销毁对象</h3><h4 id="考虑使用静态工厂代替构造函数"><a href="#考虑使用静态工厂代替构造函数" class="headerlink" title="考虑使用静态工厂代替构造函数"></a>考虑使用静态工厂代替构造函数</h4><ol>
-<li>静态工厂具有名称，可读性抢</li>
-<li>不必在每次调用时都创建新对象，单例模式</li>
-<li>可以返回原类型的子类型对象</li>
-<li>在创建类似List  Map时，代码简洁</li>
-<li>缺点：类如果不含有公有或者受保护的构造器，就不能被子类化；其与静态函数没有区别。</li>
+        <h3 id="副本集简介"><a href="#副本集简介" class="headerlink" title="副本集简介"></a>副本集简介</h3><p>Mongodb副本集由一组Mongod实例（进程）组成，包含一个Primary节点和多个Secondary节点，Mongodb Driver（客户端）的所有数据都写入Primary，Secondary从Primary同步写入的数据，以保持复制集内所有成员存储相同的数据集，提供数据的高可用。副本集带来的架构优点主要有：  </p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> 集群高可用  </li>
+<li style="list-style: none"><input type="checkbox" checked> 读写可分离</li>
+</ul>
+<a id="more"></a>  
+<h3 id="副本集节点类型"><a href="#副本集节点类型" class="headerlink" title="副本集节点类型"></a>副本集节点类型</h3><ol>
+<li><strong>Primary:</strong> 副本集的<strong>主节点</strong>，可读写，<strong>唯一可以进行写操作的节点</strong>，由集群自行选举出来。</li>
+<li><strong>Secondary：</strong> 正常情况下，Seconary会参与Primary选举（自身也可能会被选为Primary），并<strong>从Primary同步最新写入的数据</strong>，以保证与Primary存储相同的数据。Secondary<strong>可以提供读服务</strong>，增加Secondary节点可以提供副本集的读服务能力，提升副本集的可用性。</li>
+<li><strong>Arbiter：</strong> Arbiter节点<strong>只参与投票</strong>，不能被选为Primary，并且<strong>不从Primary同步数据</strong>。非常轻量级的服务，当复制集成员为偶数时，最好加入一个Arbiter节点，以提升复制集可用性。</li>
+<li><strong>Priority0：</strong> Priority0节点的选举优先级为0，<strong>不会被选举为Primary，且不能发起选举</strong>。</li>
+<li><strong>Vote0：</strong> 副本集成员最多50个，参与Primary选举投票的成员最多7个，其他成员（Vote0）的vote属性必须设置为0，即<strong>不参与投票</strong>。</li>
+<li><strong>Hidden：</strong> Hidden节点不能被选为主（Priority为0），并且<strong>对Driver不可见</strong>。因Hidden节点不会接受Driver的请求，可使用Hidden节点做一些<strong>数据备份、离线计算</strong>的任务，不会影响复制集的服务。</li>
+<li><strong>Delayed：</strong> Delayed节点<strong>必须是Hidden节点</strong>，并且其<strong>数据落后与Primary一段时间</strong>（可配置，比如1个小时）。因Delayed节点的数据比Primary落后一段时间，当错误或者无效的数据写入Primary时，可通过Delayed节点来做<strong>数据恢复</strong>。</li>
 </ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/13/EffectiveJava/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<h3 id="Primary选举"><a href="#Primary选举" class="headerlink" title="Primary选举"></a>Primary选举</h3><p>选举过程需要消耗一些时间，在此期间，集群将不能接收write操作（即使旧的primary仍然存活，但因为“网络分区”问题导致它不能与其他secondaries通讯），所有的members（包括旧的primary）都处于只读状态，选举对业务影响很大，所以需要尽量避免选举的发生。  </p>
+<p>需要进行Primary选举的场景：</p>
+<ol>
+<li>副本集初始化时；</li>
+<li>副本集被reconfig；</li>
+<li>Secondary节点检测到Primary宕机时；</li>
+<li>当有Primary节点主动stepDown（主动降级为Secondary）时；  </li>
+</ol>
+<p>Primary的选举受<strong>节点间心跳、优先级、最新的oplog时间</strong>等多种因素影响。</p>
+<ol>
+<li><strong>心跳：</strong> 复制集中的所有members之间都互相建立心跳连接，且每隔两秒发送一次心跳，如果未在10秒内收到回复，则此member将会被标记为“不可用”，Secondary（前提是可被选为Primary）会发起新的Primary选举，而其他能正常收到心跳反馈的Secondary能否决新的Primary选举。</li>
+<li><strong>优先级：</strong> 优先级即Priority值，每个member都有权重值，默认为都为1，members倾向于选举权重最高者。上述提到，priority为0的member不能被选举为primary且不能发起选举；只要当前primary的权重最高或者持有最新oplog数据的secondaries没有比它更高的权重时，集群不会触发选举。当Primary发现有优先级更高Secondary，并且该Secondary的数据落后在10s内，则Primary会主动降级，让优先级更高的Secondary有成为Primary的机会。</li>
+<li><strong>Optime：</strong> 当前member已经从primary的oplog中应用的最后一个operation的时间戳（此时间戳由primary生成，在oplog中每个操作记录都有）；一个member能成为primary的首要条件就是在所有有效的members中它持有最新的optime。</li>
+<li><strong>多数派连接：</strong> 一个member要成为primary，它必须与“多数派”的其他members建立连接，如果未能与足够多的member建立连接，事实上它本身也无法被选举为primary；多数派参考的是“总票数”，而不是member的个数，因为我们可以给每个member设定不同的“票数”。假设复制集内投票成员数量为N，则大多数为 N/2 + 1。</li>
+</ol>
+<p>综上所述，在发起选举以后，能成为Primary的节点需要的条件有：</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> 能够与“多数派”建立连接</li>
+<li style="list-style: none"><input type="checkbox" checked> 在所有有效的members中它持有最新的optime</li>
+<li style="list-style: none"><input type="checkbox" checked> 前两个条件相同的，Priority优先级高的成为Primary</li>
+<li style="list-style: none"><input type="checkbox" checked> optime与Priority都相等时，谁发起选举，谁当选Primary</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>3.0版本以后<strong>副本集成员最多50个，参与Primary选举投票的成员最多7个</strong>，其他成员（Vote0）的vote属性必须设置为0，即不参与投票。  </p>
+<p>副本集中各类角色的特点总结如下：</p>
+<table>
+<thead>
+<tr>
+<th>节点类型</th>
+<th>可读</th>
+<th>可写</th>
+<th>投票</th>
+<th>oplog操作</th>
+<th>当选Primary</th>
+<th>否决</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>生成</td>
+<td>—</td>
+<td>O</td>
+<td>无</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>O</td>
+<td>X</td>
+<td>O</td>
+<td>同步</td>
+<td>O</td>
+<td>O</td>
+<td>常规的Secondary</td>
+</tr>
+<tr>
+<td>Priority=0</td>
+<td>O</td>
+<td>X</td>
+<td>O</td>
+<td>同步</td>
+<td>X</td>
+<td>O</td>
+<td>无</td>
+</tr>
+<tr>
+<td>Hidden</td>
+<td>X</td>
+<td>X</td>
+<td>O</td>
+<td>同步</td>
+<td>X</td>
+<td>O</td>
+<td>Priority=0，不可见</td>
+</tr>
+<tr>
+<td>Delayed</td>
+<td>X</td>
+<td>X</td>
+<td>O</td>
+<td>同步</td>
+<td>X</td>
+<td>O</td>
+<td>为Hidden，延迟同步</td>
+</tr>
+<tr>
+<td>Arbiter</td>
+<td>X</td>
+<td>X</td>
+<td>O</td>
+<td>X</td>
+<td>X</td>
+<td>O</td>
+<td>Priority=0，无数据</td>
+</tr>
+<tr>
+<td>vote=0</td>
+<td>O</td>
+<td>X</td>
+<td>X</td>
+<td>同步</td>
+<td>O</td>
+<td>O</td>
+<td>不能投票</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注：</strong></p>
+<ul>
+<li>上述Secondary为默认Secondary，即Priority！=0、vote！=0等；</li>
+<li>Hidden为特殊的Secondary，Delayed为特殊的Hidden</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="https://docs.mongodb.com/manual/replication/" target="_blank" rel="external">https://docs.mongodb.com/manual/replication/</a></li>
+<li><a href="http://www.mongoing.com/archives/2155" target="_blank" rel="external">http://www.mongoing.com/archives/2155</a></li>
+<li><a href="http://blog.csdn.net/forevervip/article/details/43953189#7%E4%B8%AA%E6%8A%95%E7%A5%A8%E5%B8%AD%E4%BD%8D" target="_blank" rel="external">http://blog.csdn.net/forevervip/article/details/43953189#7%E4%B8%AA%E6%8A%95%E7%A5%A8%E5%B8%AD%E4%BD%8D</a></li>
+</ol>
+
       
     </div>
     
@@ -588,19 +550,88 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weinxin.jpg" alt="Pegasus.He 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Pegasus.He 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Pegasus.He
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://he-zhao.cn/2018/03/15/MongoDB-repSet/" title="MongoDB副本集详解-角色与选举">http://he-zhao.cn/2018/03/15/MongoDB-repSet/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/08/Mongodb-Count/" rel="next" title="MongoDB：count结果不准确的原因与解决方法">
+                <i class="fa fa-chevron-left"></i> MongoDB：count结果不准确的原因与解决方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -610,14 +641,37 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
 
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -625,6 +679,17 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
 
         </div>
         
@@ -645,8 +710,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -732,6 +806,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#副本集简介"><span class="nav-number">1.</span> <span class="nav-text">副本集简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#副本集节点类型"><span class="nav-number">2.</span> <span class="nav-text">副本集节点类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Primary选举"><span class="nav-number">3.</span> <span class="nav-text">Primary选举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -861,6 +951,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -878,6 +972,18 @@
       <script id="dsq-count-scr" src="https://pegasushe.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://he-zhao.cn/2018/03/15/MongoDB-repSet/';
+          this.page.identifier = '2018/03/15/MongoDB-repSet/';
+          this.page.title = 'MongoDB副本集详解-角色与选举';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pegasushe.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
