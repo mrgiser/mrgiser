@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Pegasus , Blog" />
+  <meta name="keywords" content="MongoDB," />
 
 
 
@@ -77,16 +77,20 @@
 
 
 
-<meta name="description" content="记录生活，写点东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pegasus | 个人博客">
-<meta property="og:url" content="http://he-zhao.cn/page/2/index.html">
+<meta name="description" content="数据同步Mongodb副本集里的Secondary会从Primary上同步数据，以保持副本集所有节点的数据保持一致。MongoDB副本集数据同步主要包含2个步骤：  init sync 可以理解为全量同步 oplog sync（replication）追同步源的oplog，可以理解为增量同步  新加入的Secondary先通过init sync同步Primary上的全量数据，再通过oplog sy">
+<meta name="keywords" content="MongoDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB副本集详解2-数据同步">
+<meta property="og:url" content="http://he-zhao.cn/2018/03/16/MongoDB-repSet2/index.html">
 <meta property="og:site_name" content="Pegasus | 个人博客">
-<meta property="og:description" content="记录生活，写点东西">
+<meta property="og:description" content="数据同步Mongodb副本集里的Secondary会从Primary上同步数据，以保持副本集所有节点的数据保持一致。MongoDB副本集数据同步主要包含2个步骤：  init sync 可以理解为全量同步 oplog sync（replication）追同步源的oplog，可以理解为增量同步  新加入的Secondary先通过init sync同步Primary上的全量数据，再通过oplog sy">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3800720-f94b112044340c86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-21T08:02:17.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pegasus | 个人博客">
-<meta name="twitter:description" content="记录生活，写点东西">
+<meta name="twitter:title" content="MongoDB副本集详解2-数据同步">
+<meta name="twitter:description" content="数据同步Mongodb副本集里的Secondary会从Primary上同步数据，以保持副本集所有节点的数据保持一致。MongoDB副本集数据同步主要包含2个步骤：  init sync 可以理解为全量同步 oplog sync（replication）追同步源的oplog，可以理解为增量同步  新加入的Secondary先通过init sync同步Primary上的全量数据，再通过oplog sy">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3800720-f94b112044340c86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://he-zhao.cn/page/2/"/>
+  <link rel="canonical" href="http://he-zhao.cn/2018/03/16/MongoDB-repSet2/"/>
 
 
 
 
 
-  <title>Pegasus | 个人博客</title>
+  <title>MongoDB副本集详解2-数据同步 | Pegasus | 个人博客</title>
   
 
 
@@ -151,8 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -289,9 +292,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -304,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2017/08/25/JStorm1/">
+    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2018/03/16/MongoDB-repSet2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pegasus.He">
@@ -321,9 +324,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/JStorm1/" itemprop="url">JStorm：概念与编程模型</a></h2>
+          <h2 class="post-title" itemprop="name headline">MongoDB副本集详解2-数据同步</h2>
         
 
         <div class="post-meta">
@@ -335,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T00:00:00+08:00">
-                2017-08-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T00:00:00+08:00">
+                2018-03-16
               </time>
             
 
@@ -358,8 +359,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JStorm/" itemprop="url" rel="index">
-                    <span itemprop="name">JStorm</span>
+                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDB</span>
                   </a>
                 </span>
 
@@ -376,9 +377,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/25/JStorm1/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/16/MongoDB-repSet2/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/25/JStorm1/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/16/MongoDB-repSet2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,493 +407,95 @@
       
 
       
-        
-          <h3 id="1、集群架构"><a href="#1、集群架构" class="headerlink" title="1、集群架构"></a>1、集群架构</h3><p>JStorm从设计的角度，就是一个典型的调度系统，简单集群的架构如下图所示，其中Nimbus可增加一个备节点，多个Supervisor节点组成任务执行集群。<br><img src="http://upload-images.jianshu.io/upload_images/3800720-fa7461040b8f2239.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="简单集群示意图"><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/25/JStorm1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2017/03/18/elasticsearch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pegasus.He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_3428.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pegasus | 个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/18/elasticsearch/" itemprop="url">提高Elasticsearch性能的配置建议</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T00:00:00+08:00">
-                2017-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Elasticsearch/" itemprop="url" rel="index">
-                    <span itemprop="name">Elasticsearch</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/18/elasticsearch/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/18/elasticsearch/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>之前公司项目中有使用Elasticsearch存储日志，当时使用的功能简单，并没有深入了解Elasticsearch，但是对于该支持文本搜索的存储架构还是很感兴趣，最近因为想在一个新项目中采用<strong>ELK</strong>（<em>Elasticsearch+Logstash+Kibana</em>）技术栈来存储系统日志，学习有关Elasticsearch的书籍（<strong>深入理解Elasticsearch，第二版</strong>），现在就书本的第八章——<strong>提高性能</strong>，总结一些有关使用Elasticsearch的Tips，该书采用的elasticsearch为1.4.X版本。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/18/elasticsearch/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pegasus.He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_3428.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pegasus | 个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/" itemprop="url">个人博客搭建与配置：Hexo-github-域名绑定</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-11T20:46:25+08:00">
-                2016-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近想搭建个人的博客网站，查询一些信息以后决定采用<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a><br>+<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>的方式。该方法站在巨人的肩膀上，很是方便快捷，找了个很喜欢的主题，做了点配置就可以，最后在阿里云上买了个域名，成功搞定就差写博客了。这里就说一下建站的整个过程。<br><strong><a href="http://he-zhao.cn">个人博客地址</a></strong><br><a href="http://he-zhao.cn">http://he-zhao.cn</a><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2016/08/13/EffectiveJava/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pegasus.He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_3428.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pegasus | 个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/13/EffectiveJava/" itemprop="url">Effective Java读书笔记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-13T00:00:00+08:00">
-                2016-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/13/EffectiveJava/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/13/EffectiveJava/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="创建和销毁对象"><a href="#创建和销毁对象" class="headerlink" title="创建和销毁对象"></a>创建和销毁对象</h3><h4 id="考虑使用静态工厂代替构造函数"><a href="#考虑使用静态工厂代替构造函数" class="headerlink" title="考虑使用静态工厂代替构造函数"></a>考虑使用静态工厂代替构造函数</h4><ol>
-<li>静态工厂具有名称，可读性抢</li>
-<li>不必在每次调用时都创建新对象，单例模式</li>
-<li>可以返回原类型的子类型对象</li>
-<li>在创建类似List  Map时，代码简洁</li>
-<li>缺点：类如果不含有公有或者受保护的构造器，就不能被子类化；其与静态函数没有区别。</li>
+        <h4 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h4><p>Mongodb副本集里的Secondary会从Primary上同步数据，以保持副本集所有节点的数据保持一致。<a href="https://docs.mongodb.com/manual/core/replica-set-sync/" target="_blank" rel="external">MongoDB副本集数据同步</a>主要包含2个步骤：</p>
+<ol>
+<li>init sync 可以理解为全量同步</li>
+<li>oplog sync（replication）追同步源的oplog，可以理解为增量同步</li>
 </ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/13/EffectiveJava/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<p>新加入的Secondary先通过init sync同步Primary上的全量数据，再通过oplog sync不断重放Primary上的oplog同步增量数据。<br><img src="https://upload-images.jianshu.io/upload_images/3800720-f94b112044340c86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据同步过程"></p>
+<a id="more"></a>  
+<h4 id="init-sync"><a href="#init-sync" class="headerlink" title="init sync"></a>init sync</h4><p>Secondary节点当出现如下状况时，需要先进行全量同步  </p>
+<ol>
+<li>oplog为空</li>
+<li>local.replset.minvalid集合里_initialSyncFlag字段设置为true</li>
+<li>内存标记initialSyncRequested设置为true</li>
+</ol>
+<p>这3个场景分别对应</p>
+<ol>
+<li>新节点加入，无任何oplog，此时需先进性initial sync</li>
+<li>initial sync开始时，会主动将_initialSyncFlag字段设置为true，正常结束后再设置为false；如果节点重启时，发现_initialSyncFlag为true，说明上次全量同步中途失败了，此时应该重新进行initial sync</li>
+<li>当用户发送resync命令时，initialSyncRequested会设置为true，此时会重新开始一次initial sync</li>
+</ol>
+<p><strong>intial sync流程</strong></p>
+<ol>
+<li>全量同步开始，设置minvalid集合的_initialSyncFlag</li>
+<li>获取同步源上最新oplog时间戳为t1</li>
+<li>全量同步集合数据，local库除外（耗时）</li>
+<li>获取同步源上最新oplog时间戳为t2</li>
+<li>重放[t1, t2]范围内的所有oplog</li>
+<li>获取同步源上最新oplog时间戳为t3</li>
+<li>重放[t2, t3]范围内所有的oplog</li>
+<li>建立集合所有索引 （耗时）</li>
+<li>获取同步源上最新oplog时间戳为t4</li>
+<li>重放[t3, t4]范围内所有的oplog</li>
+<li>全量同步结束，清除minvalid集合的_initialSyncFlag</li>
+</ol>
+<h4 id="oplog-sync（replication）"><a href="#oplog-sync（replication）" class="headerlink" title="oplog sync（replication）"></a>oplog sync（replication）</h4><p>initial sync结束后，Secondary会建立到Primary上local.oplog.rs的tailable cursor，不断从Primary上获取新写入的oplog，并应用到自身。</p>
+<h4 id="oplog"><a href="#oplog" class="headerlink" title="oplog"></a>oplog</h4><p>Primary与Secondary之间通过oplog来同步数据，Primary上的写操作完成后，会向特殊的 <em>local.oplog.rs</em> 特殊集合写入一条oplog，Secondary不断的从Primary取新的oplog并应用。</p>
+<p>因oplog的数据会不断增加，local.oplog.rs被设置成为一个<a href="https://docs.mongodb.com/manual/core/capped-collections/" target="_blank" rel="external"> <em>capped集合</em> </a>，当容量达到配置上限时，会将最旧的数据删除掉。另外考虑到oplog在Secondary上可能重复应用，oplog必须具有<strong>幂等性</strong>，即重复应用也会得到相同的结果。</p>
+<p>如下oplog的格式，包含ts、h、op、ns、o等字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    &quot;ts&quot; : Timestamp(1521169114, 4), </span><br><span class="line">    &quot;t&quot; : NumberLong(11), </span><br><span class="line">    &quot;h&quot; : NumberLong(-2875196737885853602), </span><br><span class="line">    &quot;v&quot; : NumberInt(2), </span><br><span class="line">    &quot;op&quot; : &quot;i&quot;, </span><br><span class="line">    &quot;ns&quot; : &quot;testdb.table3&quot;, </span><br><span class="line">    &quot;ui&quot; : BinData(4, &quot;A0pnjSbATe+O+H51myfqwQ==&quot;), </span><br><span class="line">    &quot;wall&quot; : ISODate(&quot;2018-03-16T02:58:34.156+0000&quot;), </span><br><span class="line">    &quot;o&quot; : &#123;</span><br><span class="line">        &quot;_id&quot; : ObjectId(&quot;5aab32dc51382146343c0b03&quot;), </span><br><span class="line">        &quot;id&quot; : NumberInt(3), </span><br><span class="line">        &quot;type&quot; : &quot;database3&quot;, </span><br><span class="line">        &quot;test&quot; : &quot;testval3&quot;, </span><br><span class="line">        &quot;name&quot; : &quot;name3&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>ts： 操作时间，当前timestamp + 计数器，计数器每秒都被重置</li>
+<li>h：操作的全局唯一标识</li>
+<li>v：oplog版本信息</li>
+<li>op：操作类型<ul>
+<li>i：插入操作</li>
+<li>u：更新操作</li>
+<li>d：删除操作</li>
+<li>c：执行命令（如createDatabase，dropDatabase）</li>
+<li>n：空操作，特殊用途</li>
+</ul>
+</li>
+<li>ns：操作针对的集合</li>
+<li>o：操作内容，如果是更新操作</li>
+<li>o2：操作查询条件，仅update操作包含该字段</li>
+</ul>
+<h4 id="oplog-sync过程"><a href="#oplog-sync过程" class="headerlink" title="oplog sync过程"></a>oplog sync过程</h4><p>Tailable cursor每次会获取到一批oplog，Secondary采用多线程重放oplog以提高效率，通过将oplog按照所属的namespace进行分组，划分到多个线程里，保证同一个namespace的所有操作都由一个线程来replay，以保证统一namespace的操作时序跟primary上保持一致（如果引擎支持文档锁，只需保证同一个文档的操作时序与primary一致即可）。</p>
+<ol>
+<li>producer thread，这个线程不断的从同步源上拉取oplog，并加入到一个BlockQueue的队列里保存着。</li>
+<li>replBatcher thread，这个线程负责逐个从producer thread的队列里取出oplog，并放到自己维护的队列里。</li>
+<li>sync线程将replBatcher thread的队列分发到默认16个replWriter线程，由replWriter thread来最终重放每条oplog。</li>
+</ol>
+<ul>
+<li>拉取oplog是单线程进行，所以设计上producer thread只干一件事。</li>
+<li>oplog重放时，要保持顺序性，而且遇到createCollection、dropCollection等DDL命令时，这些命令与其他的增删改查命令是不能并行执行的，而这些控制就是由replBatcher来完成的。</li>
+<li>同一个namespace的所有操作都由一个线程来replay，以保证统一namespace的操作时序跟primary上保持一致</li>
+</ul>
+<h4 id="同步场景分析"><a href="#同步场景分析" class="headerlink" title="同步场景分析"></a>同步场景分析</h4><ol>
+<li><p>副本集初始化</p>
+<ul>
+<li>初始化选出Primary后，此时Secondary上无有效数据，oplog是空的，会先进行initial sync，然后不断的应用新的oplog</li>
+</ul>
+</li>
+<li><p>新成员加入</p>
+<ul>
+<li>因新成员上无有效数据，oplog是空的，会先进行initial sync，然后不断的应用新的oplog</li>
+</ul>
+</li>
+<li><p>有数据的节点加入</p>
+<p> 有数据的节点加入有如下情况：</p>
+<ul>
+<li>该节点与副本集其他节点断开连接，一段时间后恢复</li>
+<li><p>该节点从副本集移除（处于REMOVED）状态，通过replSetReconfig命令将其重新加入</p>
+<p>此时，如果该节点最新的oplog时间戳，比所有节点最旧的oplog时间戳还要小，该节点将找不到同步源，会一直处于RECOVERING而不能服务；反之，如果能找到同步源，则直接进入replication阶段，不断的应用新的oplog。</p>
+<p>因oplog太旧而处于RECOVERING的节点目前无法自动恢复，需人工介入处理（故设置合理的oplog大小非常重要），最简单的方式是发送resync命令，让该节点重新进行initial sync。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="oplog大小修改"><a href="#oplog大小修改" class="headerlink" title="oplog大小修改"></a>oplog大小修改</h4><p>默认下，oplog大小会占用64位的实例5%的可用磁盘空间，在一些场景下oplog太小会导致同步失败等问题。动态修改oplog大小参考如下方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.runCommand(&#123;collMod: &quot;oplog.rs&quot;, maxSize: 1024000000&#125;)</span><br></pre></td></tr></table></figure></p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="http://www.mongoing.com/archives/2369" target="_blank" rel="external">http://www.mongoing.com/archives/2369</a><br><a href="http://www.mongoing.com/archives/3076" target="_blank" rel="external">http://www.mongoing.com/archives/3076</a></p>
+
       
     </div>
     
@@ -902,19 +505,88 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
 
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weinxin.jpg" alt="Pegasus.He 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Pegasus.He 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Pegasus.He
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://he-zhao.cn/2018/03/16/MongoDB-repSet2/" title="MongoDB副本集详解2-数据同步">http://he-zhao.cn/2018/03/16/MongoDB-repSet2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/15/MongoDB-repSet/" rel="next" title="MongoDB副本集详解-角色与选举">
+                <i class="fa fa-chevron-left"></i> MongoDB副本集详解-角色与选举
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -924,14 +596,37 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
 
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -939,6 +634,17 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
 
         </div>
         
@@ -959,8 +665,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1046,6 +761,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据同步"><span class="nav-number">1.</span> <span class="nav-text">数据同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init-sync"><span class="nav-number">2.</span> <span class="nav-text">init sync</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oplog-sync（replication）"><span class="nav-number">3.</span> <span class="nav-text">oplog sync（replication）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oplog"><span class="nav-number">4.</span> <span class="nav-text">oplog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oplog-sync过程"><span class="nav-number">5.</span> <span class="nav-text">oplog sync过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步场景分析"><span class="nav-number">6.</span> <span class="nav-text">同步场景分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#oplog大小修改"><span class="nav-number">7.</span> <span class="nav-text">oplog大小修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考链接"><span class="nav-number">8.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1175,6 +906,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -1192,6 +927,18 @@
       <script id="dsq-count-scr" src="https://pegasushe.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://he-zhao.cn/2018/03/16/MongoDB-repSet2/';
+          this.page.identifier = '2018/03/16/MongoDB-repSet2/';
+          this.page.title = 'MongoDB副本集详解2-数据同步';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pegasushe.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

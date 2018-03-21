@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MongoDB副本集详解2-数据同步]]></title>
+    <url>%2F2018%2F03%2F16%2FMongoDB-repSet2%2F</url>
+    <content type="text"><![CDATA[数据同步Mongodb副本集里的Secondary会从Primary上同步数据，以保持副本集所有节点的数据保持一致。MongoDB副本集数据同步主要包含2个步骤： init sync 可以理解为全量同步 oplog sync（replication）追同步源的oplog，可以理解为增量同步 新加入的Secondary先通过init sync同步Primary上的全量数据，再通过oplog sync不断重放Primary上的oplog同步增量数据。 init syncSecondary节点当出现如下状况时，需要先进行全量同步 oplog为空 local.replset.minvalid集合里_initialSyncFlag字段设置为true 内存标记initialSyncRequested设置为true 这3个场景分别对应 新节点加入，无任何oplog，此时需先进性initial sync initial sync开始时，会主动将_initialSyncFlag字段设置为true，正常结束后再设置为false；如果节点重启时，发现_initialSyncFlag为true，说明上次全量同步中途失败了，此时应该重新进行initial sync 当用户发送resync命令时，initialSyncRequested会设置为true，此时会重新开始一次initial sync intial sync流程 全量同步开始，设置minvalid集合的_initialSyncFlag 获取同步源上最新oplog时间戳为t1 全量同步集合数据，local库除外（耗时） 获取同步源上最新oplog时间戳为t2 重放[t1, t2]范围内的所有oplog 获取同步源上最新oplog时间戳为t3 重放[t2, t3]范围内所有的oplog 建立集合所有索引 （耗时） 获取同步源上最新oplog时间戳为t4 重放[t3, t4]范围内所有的oplog 全量同步结束，清除minvalid集合的_initialSyncFlag oplog sync（replication）initial sync结束后，Secondary会建立到Primary上local.oplog.rs的tailable cursor，不断从Primary上获取新写入的oplog，并应用到自身。 oplogPrimary与Secondary之间通过oplog来同步数据，Primary上的写操作完成后，会向特殊的 local.oplog.rs 特殊集合写入一条oplog，Secondary不断的从Primary取新的oplog并应用。 因oplog的数据会不断增加，local.oplog.rs被设置成为一个 capped集合 ，当容量达到配置上限时，会将最旧的数据删除掉。另外考虑到oplog在Secondary上可能重复应用，oplog必须具有幂等性，即重复应用也会得到相同的结果。 如下oplog的格式，包含ts、h、op、ns、o等字段1234567891011121314151617&#123; &quot;ts&quot; : Timestamp(1521169114, 4), &quot;t&quot; : NumberLong(11), &quot;h&quot; : NumberLong(-2875196737885853602), &quot;v&quot; : NumberInt(2), &quot;op&quot; : &quot;i&quot;, &quot;ns&quot; : &quot;testdb.table3&quot;, &quot;ui&quot; : BinData(4, &quot;A0pnjSbATe+O+H51myfqwQ==&quot;), &quot;wall&quot; : ISODate(&quot;2018-03-16T02:58:34.156+0000&quot;), &quot;o&quot; : &#123; &quot;_id&quot; : ObjectId(&quot;5aab32dc51382146343c0b03&quot;), &quot;id&quot; : NumberInt(3), &quot;type&quot; : &quot;database3&quot;, &quot;test&quot; : &quot;testval3&quot;, &quot;name&quot; : &quot;name3&quot; &#125;&#125; ts： 操作时间，当前timestamp + 计数器，计数器每秒都被重置 h：操作的全局唯一标识 v：oplog版本信息 op：操作类型 i：插入操作 u：更新操作 d：删除操作 c：执行命令（如createDatabase，dropDatabase） n：空操作，特殊用途 ns：操作针对的集合 o：操作内容，如果是更新操作 o2：操作查询条件，仅update操作包含该字段 oplog sync过程Tailable cursor每次会获取到一批oplog，Secondary采用多线程重放oplog以提高效率，通过将oplog按照所属的namespace进行分组，划分到多个线程里，保证同一个namespace的所有操作都由一个线程来replay，以保证统一namespace的操作时序跟primary上保持一致（如果引擎支持文档锁，只需保证同一个文档的操作时序与primary一致即可）。 producer thread，这个线程不断的从同步源上拉取oplog，并加入到一个BlockQueue的队列里保存着。 replBatcher thread，这个线程负责逐个从producer thread的队列里取出oplog，并放到自己维护的队列里。 sync线程将replBatcher thread的队列分发到默认16个replWriter线程，由replWriter thread来最终重放每条oplog。 拉取oplog是单线程进行，所以设计上producer thread只干一件事。 oplog重放时，要保持顺序性，而且遇到createCollection、dropCollection等DDL命令时，这些命令与其他的增删改查命令是不能并行执行的，而这些控制就是由replBatcher来完成的。 同一个namespace的所有操作都由一个线程来replay，以保证统一namespace的操作时序跟primary上保持一致 同步场景分析 副本集初始化 初始化选出Primary后，此时Secondary上无有效数据，oplog是空的，会先进行initial sync，然后不断的应用新的oplog 新成员加入 因新成员上无有效数据，oplog是空的，会先进行initial sync，然后不断的应用新的oplog 有数据的节点加入 有数据的节点加入有如下情况： 该节点与副本集其他节点断开连接，一段时间后恢复 该节点从副本集移除（处于REMOVED）状态，通过replSetReconfig命令将其重新加入 此时，如果该节点最新的oplog时间戳，比所有节点最旧的oplog时间戳还要小，该节点将找不到同步源，会一直处于RECOVERING而不能服务；反之，如果能找到同步源，则直接进入replication阶段，不断的应用新的oplog。 因oplog太旧而处于RECOVERING的节点目前无法自动恢复，需人工介入处理（故设置合理的oplog大小非常重要），最简单的方式是发送resync命令，让该节点重新进行initial sync。 oplog大小修改默认下，oplog大小会占用64位的实例5%的可用磁盘空间，在一些场景下oplog太小会导致同步失败等问题。动态修改oplog大小参考如下方法：1db.runCommand(&#123;collMod: &quot;oplog.rs&quot;, maxSize: 1024000000&#125;) 参考链接http://www.mongoing.com/archives/2369http://www.mongoing.com/archives/3076]]></content>
+      <categories>
+        <category>MongoDB</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MongoDB副本集详解-角色与选举]]></title>
     <url>%2F2018%2F03%2F15%2FMongoDB-repSet%2F</url>
     <content type="text"><![CDATA[副本集简介Mongodb副本集由一组Mongod实例（进程）组成，包含一个Primary节点和多个Secondary节点，Mongodb Driver（客户端）的所有数据都写入Primary，Secondary从Primary同步写入的数据，以保持复制集内所有成员存储相同的数据集，提供数据的高可用。副本集带来的架构优点主要有： 集群高可用 读写可分离 副本集节点类型 Primary: 副本集的主节点，可读写，唯一可以进行写操作的节点，由集群自行选举出来。 Secondary： 正常情况下，Seconary会参与Primary选举（自身也可能会被选为Primary），并从Primary同步最新写入的数据，以保证与Primary存储相同的数据。Secondary可以提供读服务，增加Secondary节点可以提供副本集的读服务能力，提升副本集的可用性。 Arbiter： Arbiter节点只参与投票，不能被选为Primary，并且不从Primary同步数据。非常轻量级的服务，当复制集成员为偶数时，最好加入一个Arbiter节点，以提升复制集可用性。 Priority0： Priority0节点的选举优先级为0，不会被选举为Primary，且不能发起选举。 Vote0： 副本集成员最多50个，参与Primary选举投票的成员最多7个，其他成员（Vote0）的vote属性必须设置为0，即不参与投票。 Hidden： Hidden节点不能被选为主（Priority为0），并且对Driver不可见。因Hidden节点不会接受Driver的请求，可使用Hidden节点做一些数据备份、离线计算的任务，不会影响复制集的服务。 Delayed： Delayed节点必须是Hidden节点，并且其数据落后与Primary一段时间（可配置，比如1个小时）。因Delayed节点的数据比Primary落后一段时间，当错误或者无效的数据写入Primary时，可通过Delayed节点来做数据恢复。 Primary选举选举过程需要消耗一些时间，在此期间，集群将不能接收write操作（即使旧的primary仍然存活，但因为“网络分区”问题导致它不能与其他secondaries通讯），所有的members（包括旧的primary）都处于只读状态，选举对业务影响很大，所以需要尽量避免选举的发生。 需要进行Primary选举的场景： 副本集初始化时； 副本集被reconfig； Secondary节点检测到Primary宕机时； 当有Primary节点主动stepDown（主动降级为Secondary）时； Primary的选举受节点间心跳、优先级、最新的oplog时间等多种因素影响。 心跳： 复制集中的所有members之间都互相建立心跳连接，且每隔两秒发送一次心跳，如果未在10秒内收到回复，则此member将会被标记为“不可用”，Secondary（前提是可被选为Primary）会发起新的Primary选举，而其他能正常收到心跳反馈的Secondary能否决新的Primary选举。 优先级： 优先级即Priority值，每个member都有权重值，默认为都为1，members倾向于选举权重最高者。上述提到，priority为0的member不能被选举为primary且不能发起选举；只要当前primary的权重最高或者持有最新oplog数据的secondaries没有比它更高的权重时，集群不会触发选举。当Primary发现有优先级更高Secondary，并且该Secondary的数据落后在10s内，则Primary会主动降级，让优先级更高的Secondary有成为Primary的机会。 Optime： 当前member已经从primary的oplog中应用的最后一个operation的时间戳（此时间戳由primary生成，在oplog中每个操作记录都有）；一个member能成为primary的首要条件就是在所有有效的members中它持有最新的optime。 多数派连接： 一个member要成为primary，它必须与“多数派”的其他members建立连接，如果未能与足够多的member建立连接，事实上它本身也无法被选举为primary；多数派参考的是“总票数”，而不是member的个数，因为我们可以给每个member设定不同的“票数”。假设复制集内投票成员数量为N，则大多数为 N/2 + 1。 综上所述，在发起选举以后，能成为Primary的节点需要的条件有： 能够与“多数派”建立连接 在所有有效的members中它持有最新的optime 前两个条件相同的，Priority优先级高的成为Primary optime与Priority都相等时，谁发起选举，谁当选Primary 总结3.0版本以后副本集成员最多50个，参与Primary选举投票的成员最多7个，其他成员（Vote0）的vote属性必须设置为0，即不参与投票。 副本集中各类角色的特点总结如下： 节点类型 可读 可写 投票 oplog操作 当选Primary 否决 备注 Primary O O O 生成 — O 无 Secondary O X O 同步 O O 常规的Secondary Priority=0 O X O 同步 X O 无 Hidden X X O 同步 X O Priority=0，不可见 Delayed X X O 同步 X O 为Hidden，延迟同步 Arbiter X X O X X O Priority=0，无数据 vote=0 O X X 同步 O O 不能投票 备注： 上述Secondary为默认Secondary，即Priority！=0、vote！=0等； Hidden为特殊的Secondary，Delayed为特殊的Hidden 参考资料 https://docs.mongodb.com/manual/replication/ http://www.mongoing.com/archives/2155 http://blog.csdn.net/forevervip/article/details/43953189#7%E4%B8%AA%E6%8A%95%E7%A5%A8%E5%B8%AD%E4%BD%8D]]></content>
@@ -19,8 +30,8 @@
         <category>MongoDB</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>MongoDB</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -82,9 +93,9 @@
         <category>JStorm</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>JStorm</tag>
         <tag>大数据</tag>
+        <tag>java</tag>
         <tag>安装</tag>
       </tags>
   </entry>
