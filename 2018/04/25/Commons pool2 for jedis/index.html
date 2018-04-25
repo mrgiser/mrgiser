@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="java,读书笔记," />
+  <meta name="keywords" content="java,jedis,redis," />
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="创建和销毁对象考虑使用静态工厂代替构造函数 静态工厂具有名称，可读性抢 不必在每次调用时都创建新对象，单例模式 可以返回原类型的子类型对象 在创建类似List  Map时，代码简洁 缺点：类如果不含有公有或者受保护的构造器，就不能被子类化；其与静态函数没有区别。">
-<meta name="keywords" content="java,读书笔记">
+<meta name="description" content="Commons pool2配置参数（以Jedis连接为例） MaxTotal： 最大连接数（空闲+使用中） MaxIdle： 最大空闲连接数 MinIdle：  最小空闲连接数 MaxWaitMillis： 借出连接时最大的等待时间，超时抛错 TimeBetweenEvictionRunsMillis： 后台检测线程周期 MinEvictableIdleTimeMillis：硬闲置时间，连接多久没">
+<meta name="keywords" content="java,jedis,redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective Java读书笔记">
-<meta property="og:url" content="http://he-zhao.cn/2016/08/13/EffectiveJava/index.html">
+<meta property="og:title" content="Commons pool2 配置详解及其在Jedis中的使用">
+<meta property="og:url" content="http://he-zhao.cn/2018/04/25/Commons pool2 for jedis/index.html">
 <meta property="og:site_name" content="Pegasus | 个人博客">
-<meta property="og:description" content="创建和销毁对象考虑使用静态工厂代替构造函数 静态工厂具有名称，可读性抢 不必在每次调用时都创建新对象，单例模式 可以返回原类型的子类型对象 在创建类似List  Map时，代码简洁 缺点：类如果不含有公有或者受保护的构造器，就不能被子类化；其与静态函数没有区别。">
+<meta property="og:description" content="Commons pool2配置参数（以Jedis连接为例） MaxTotal： 最大连接数（空闲+使用中） MaxIdle： 最大空闲连接数 MinIdle：  最小空闲连接数 MaxWaitMillis： 借出连接时最大的等待时间，超时抛错 TimeBetweenEvictionRunsMillis： 后台检测线程周期 MinEvictableIdleTimeMillis：硬闲置时间，连接多久没">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T07:31:15.440Z">
+<meta property="og:updated_time" content="2018-04-25T07:34:04.065Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective Java读书笔记">
-<meta name="twitter:description" content="创建和销毁对象考虑使用静态工厂代替构造函数 静态工厂具有名称，可读性抢 不必在每次调用时都创建新对象，单例模式 可以返回原类型的子类型对象 在创建类似List  Map时，代码简洁 缺点：类如果不含有公有或者受保护的构造器，就不能被子类化；其与静态函数没有区别。">
+<meta name="twitter:title" content="Commons pool2 配置详解及其在Jedis中的使用">
+<meta name="twitter:description" content="Commons pool2配置参数（以Jedis连接为例） MaxTotal： 最大连接数（空闲+使用中） MaxIdle： 最大空闲连接数 MinIdle：  最小空闲连接数 MaxWaitMillis： 借出连接时最大的等待时间，超时抛错 TimeBetweenEvictionRunsMillis： 后台检测线程周期 MinEvictableIdleTimeMillis：硬闲置时间，连接多久没">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://he-zhao.cn/2016/08/13/EffectiveJava/"/>
+  <link rel="canonical" href="http://he-zhao.cn/2018/04/25/Commons pool2 for jedis/"/>
 
 
 
 
 
-  <title>Effective Java读书笔记 | Pegasus | 个人博客</title>
+  <title>Commons pool2 配置详解及其在Jedis中的使用 | Pegasus | 个人博客</title>
   
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2016/08/13/EffectiveJava/">
+    <link itemprop="mainEntityOfPage" href="http://he-zhao.cn/2018/04/25/Commons pool2 for jedis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pegasus.He">
@@ -322,7 +322,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Effective Java读书笔记</h2>
+          <h2 class="post-title" itemprop="name headline">Commons pool2 配置详解及其在Jedis中的使用</h2>
         
 
         <div class="post-meta">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-13T00:00:00+08:00">
-                2016-08-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T00:00:00+08:00">
+                2018-04-25
               </time>
             
 
@@ -375,9 +375,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/08/13/EffectiveJava/#comments" itemprop="discussionUrl">
+                <a href="/2018/04/25/Commons pool2 for jedis/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/13/EffectiveJava/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/04/25/Commons pool2 for jedis/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,92 +405,26 @@
       
 
       
-        <h3 id="创建和销毁对象"><a href="#创建和销毁对象" class="headerlink" title="创建和销毁对象"></a>创建和销毁对象</h3><h4 id="考虑使用静态工厂代替构造函数"><a href="#考虑使用静态工厂代替构造函数" class="headerlink" title="考虑使用静态工厂代替构造函数"></a>考虑使用静态工厂代替构造函数</h4><ol>
-<li>静态工厂具有名称，可读性抢</li>
-<li>不必在每次调用时都创建新对象，单例模式</li>
-<li>可以返回原类型的子类型对象</li>
-<li>在创建类似List  Map时，代码简洁</li>
-<li>缺点：类如果不含有公有或者受保护的构造器，就不能被子类化；其与静态函数没有区别。</li>
-</ol>
+        <h3 id="Commons-pool2配置参数（以Jedis连接为例）"><a href="#Commons-pool2配置参数（以Jedis连接为例）" class="headerlink" title="Commons pool2配置参数（以Jedis连接为例）"></a>Commons pool2配置参数（以Jedis连接为例）</h3><ul>
+<li>MaxTotal： 最大连接数（空闲+使用中）</li>
+<li>MaxIdle： 最大空闲连接数</li>
+<li>MinIdle：  最小空闲连接数</li>
+<li>MaxWaitMillis： 借出连接时最大的等待时间，超时抛错</li>
+<li>TimeBetweenEvictionRunsMillis： 后台检测线程周期</li>
+<li>MinEvictableIdleTimeMillis：硬闲置时间，连接多久没有使用设置为闲置,检测线程直接剔除闲置，为保持最小空闲数，被剔除后可能重新生成</li>
+<li>SoftMinEvictableIdleTimeMillis：软闲置时间，连接多久没有使用设置为闲置,当空闲连接 &gt; MinIdle，才执行剔除闲置，否则维持最小空闲数，即使闲置了也不会剔除，设置MinEvictableIdleTimeMillis后，本参数无效</li>
+<li>testOnBorrow：在borrow一个连接时，是否提前进行alidate操作；如果为true，则得到的jedis实例均是可用的；</li>
+<li>testOnReturn：在连接return给pool时，是否提前进行validate操作；</li>
+<li>testWhileIdle：如果为true，表示后台线程对idle连接进行扫描，如果validate失败，此连接会被从pool中剔除；只有在timeBetweenEvictionRunsMillis大于0时才有意义；</li>
+</ul>
 <a id="more"></a>
-<h4 id="遇到多个构造函数参数时，考虑使用构建器"><a href="#遇到多个构造函数参数时，考虑使用构建器" class="headerlink" title="遇到多个构造函数参数时，考虑使用构建器"></a>遇到多个构造函数参数时，考虑使用构建器</h4><ol>
-<li>参数多时并可选，构造函数很多，静态工厂也是如此</li>
-<li>构建器，set方法返回this，调用可以连接起来。</li>
-</ol>
-<h4 id="使用私有构造器或者枚举类型强化单例属性"><a href="#使用私有构造器或者枚举类型强化单例属性" class="headerlink" title="使用私有构造器或者枚举类型强化单例属性"></a>使用私有构造器或者枚举类型强化单例属性</h4><ol>
-<li>使用反射机制，可以调用私有构造器</li>
-<li>序列化时，提供readResolve方法保证单一</li>
-<li>单元素的枚举类型成为实现单例的最佳方法</li>
-</ol>
-<h4 id="避免创建不必要的对象"><a href="#避免创建不必要的对象" class="headerlink" title="避免创建不必要的对象"></a>避免创建不必要的对象</h4><ol>
-<li>不需要new String，重用不可变的String对象</li>
-<li>注意基本类型与装箱类型，优先使用基本类型，装箱类型每次都会新建。</li>
-<li>只有在对象非常重量级时，才考虑使用对象池</li>
-</ol>
-<h4 id="消除过期的对象引用"><a href="#消除过期的对象引用" class="headerlink" title="消除过期的对象引用"></a>消除过期的对象引用</h4><ol>
-<li>如果一个栈先增长，再收缩；从栈中弹出来的对象将不会被当做垃圾回收。Object[] </li>
-<li>内存泄露常见来源：缓存、监听器、其他回调</li>
-</ol>
-<h4 id="避免使用终结方法"><a href="#避免使用终结方法" class="headerlink" title="避免使用终结方法"></a>避免使用终结方法</h4><ol>
-<li>finalizer通常是不可预测的，也是很危险的，一般情况不适用</li>
-<li>中介方法的缺点在于不能保证会被及时的执行</li>
-<li>java不保证终结方法会被及时的执行，而且根本不保证他们会被执行</li>
-<li>异常发生在终结方法中，警告都不会打出</li>
-<li>终结方法有一个非常严重的性能损耗</li>
-<li>使用终结方法，记得使用super.finalizer</li>
-<li>使用try finally代替</li>
-</ol>
-<h3 id="所有对象都通用的方法"><a href="#所有对象都通用的方法" class="headerlink" title="所有对象都通用的方法"></a>所有对象都通用的方法</h3><h4 id="覆盖equals时，遵守通用约定"><a href="#覆盖equals时，遵守通用约定" class="headerlink" title="覆盖equals时，遵守通用约定"></a>覆盖equals时，遵守通用约定</h4><ol>
-<li>类具有自己特有的<strong>逻辑相等</strong>概念时，覆盖equals</li>
-<li>需要满足自反性、对称性、传递性、一致性，null必不相等</li>
-<li>覆盖equals时必须覆盖hashCode</li>
-<li>不要企图让equals过于智能，加上@Override</li>
-</ol>
-<h4 id="覆盖Equals时要覆盖hashCode"><a href="#覆盖Equals时要覆盖hashCode" class="headerlink" title="覆盖Equals时要覆盖hashCode"></a>覆盖Equals时要覆盖hashCode</h4><ol>
-<li>equals所用信息不变，code多次执行结果不变</li>
-<li>equals相等，code相同</li>
-<li>equals不同，code可能相同，散列的分散性</li>
-<li>不要试图从散列码中排除一个关键部分来提高性能</li>
-<li>散列码缓存在对象内部</li>
-<li>延迟初始化散列码</li>
-</ol>
-<h4 id="始终要覆盖toString"><a href="#始终要覆盖toString" class="headerlink" title="始终要覆盖toString"></a>始终要覆盖toString</h4><ol>
-<li>toString应该包含对象中包含的所有值得关注的信息</li>
-</ol>
-<h4 id="谨慎地覆盖clone"><a href="#谨慎地覆盖clone" class="headerlink" title="谨慎地覆盖clone"></a>谨慎地覆盖clone</h4><ol>
-<li>final与clone冲突</li>
-<li>对于一个为了继承而设计的类，如果未能提供行为良好的受保护的clone方法，它的子类就不可能实现cloneable接口</li>
-</ol>
-<h4 id="考虑实现Comparable接口"><a href="#考虑实现Comparable接口" class="headerlink" title="考虑实现Comparable接口"></a>考虑实现Comparable接口</h4><ol>
-<li>对象小于、等于、大于指定对象时，返回负数、0、正数</li>
-<li>自反性、对称性、传递性</li>
-</ol>
-<h3 id="类和接口"><a href="#类和接口" class="headerlink" title="类和接口"></a>类和接口</h3><h4 id="使类和成员的可访问性最小化"><a href="#使类和成员的可访问性最小化" class="headerlink" title="使类和成员的可访问性最小化"></a>使类和成员的可访问性最小化</h4><ol>
-<li>信息隐藏与封装是软件设计的原则</li>
-<li>有效的解除组成系统的个模块之间的耦合关系</li>
-<li>尽可能的使每个类或成员不被外界访问</li>
-<li>私有-&gt;包级私有-&gt;收保护-&gt;公有</li>
-<li>受保护的成员应该尽少使用，是对外API的一部分，需要维护</li>
-<li>长度非零的数组总是可变，类具有公有的静态final数组，或者返回这域的访问方法，几乎总是错误的</li>
-</ol>
-<h4 id="在公有类中使用set、get而不是公有域"><a href="#在公有类中使用set、get而不是公有域" class="headerlink" title="在公有类中使用set、get而不是公有域"></a>在公有类中使用set、get而不是公有域</h4><h4 id="使可变性最小化"><a href="#使可变性最小化" class="headerlink" title="使可变性最小化"></a>使可变性最小化</h4><ol>
-<li>不可变对象比较简单</li>
-<li>线程安全、不要求同步</li>
-<li>缺点：不同的值都需要一个单独的对象</li>
-</ol>
-<h4 id="复合优先与继承"><a href="#复合优先与继承" class="headerlink" title="复合优先与继承"></a>复合优先与继承</h4><ol>
-<li>在包内继承，是非常安全的</li>
-<li>进行夸包边界的继承，是非常危险的</li>
-<li>继承打破了封装性</li>
-<li>只有子类真正是超累的子类型时 is-a，才试用继承</li>
-</ol>
-<h4 id="接口优与抽象类"><a href="#接口优与抽象类" class="headerlink" title="接口优与抽象类"></a>接口优与抽象类</h4><ol>
-<li>java单继承，抽象类受到极大的限制</li>
-</ol>
-<h4 id="函数指针实现策略模式-Arrays-sort"><a href="#函数指针实现策略模式-Arrays-sort" class="headerlink" title="函数指针实现策略模式 Arrays.sort"></a>函数指针实现策略模式 Arrays.sort</h4><h4 id="优先使用静态成员类"><a href="#优先使用静态成员类" class="headerlink" title="优先使用静态成员类"></a>优先使用静态成员类</h4><ol>
-<li>静态成员类、非静态成员类、匿名类、局部类</li>
-<li>如果成员类不需要访问外围类实例，就使用静态成员类</li>
-</ol>
+<h3 id="JedisPool验证参数配置"><a href="#JedisPool验证参数配置" class="headerlink" title="JedisPool验证参数配置"></a>JedisPool验证参数配置</h3><p>用以下代码验证配置参数的作用，其中Ctg开头的是我封装了的，可以使用JedisPool相关类代替<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        BasicConfigurator.configure();</span><br><span class="line"></span><br><span class="line">        List&lt;HostAndPort&gt; hostAndPortList = new ArrayList(); //地址列表</span><br><span class="line">        HostAndPort host1 = new HostAndPort(&quot;132.122.232.225&quot;,9081); </span><br><span class="line">        hostAndPortList.add(host1);</span><br><span class="line"></span><br><span class="line">        GenericObjectPoolConfig poolConfig = new JedisPoolConfig(); //线程池配置</span><br><span class="line">        poolConfig.setMaxIdle(2); //最大空闲连接数</span><br><span class="line">        poolConfig.setMaxTotal(3); // 最大连接数（空闲+使用中）</span><br><span class="line">        poolConfig.setMinIdle(1); //保持的最小空闲连接数</span><br><span class="line">        poolConfig.setMaxWaitMillis(2000); //借出连接时最大的等待时间</span><br><span class="line">        poolConfig.setTimeBetweenEvictionRunsMillis(1000); //1秒运行一次检测线程</span><br><span class="line">        //硬闲置、软闲置配置</span><br><span class="line">        //硬闲置  3秒没有占用设置为闲置, 检测线程直接剔除闲置，保持的最小空闲数，会被剔除且重新生成</span><br><span class="line">        poolConfig.setMinEvictableIdleTimeMillis(3000);</span><br><span class="line">        //软闲置  3秒没有占用设置为闲置, 当空闲连接&gt;最小空闲数，才执行剔除闲置连接，否则维持最小空闲数，即使闲置了也不会剔除</span><br><span class="line">        poolConfig.setSoftMinEvictableIdleTimeMillis(3000);</span><br><span class="line"></span><br><span class="line">        CtgJedisPoolConfig config = new CtgJedisPoolConfig(hostAndPortList);</span><br><span class="line">        config.setDatabase(4970) //分组对应的桶位</span><br><span class="line">                .setPassword(&quot;disk#Test1234&quot;) // “用户#密码”</span><br><span class="line">                .setPoolConfig(poolConfig) //线程池配置</span><br><span class="line">                .setPeriod(1000)  //后台监控执行周期，毫秒</span><br><span class="line">                .setMonitorTimeout(100);  //后台监控ping命令超时时间,毫秒</span><br><span class="line"></span><br><span class="line">        CtgJedisPool pool = new CtgJedisPool(config); //创建连接池</span><br><span class="line">        ProxyJedis jedis_1 = null;</span><br><span class="line">        ProxyJedis jedis_2 = null;</span><br><span class="line">        ProxyJedis jedis_3 = null;</span><br><span class="line"></span><br><span class="line">        //最大连接为3，以下三次获取能成功</span><br><span class="line">        try &#123;</span><br><span class="line">            logger.info(&quot;=================== get jedis_1 =========================&quot;);</span><br><span class="line">            jedis_1 = pool.getResource();</span><br><span class="line">        &#125; catch (CtgJedisPoolException e) &#123;</span><br><span class="line">            logger.error(&quot;jedis_1 : Get resource error&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            logger.info(&quot;=================== get jedis_2 =========================&quot;);</span><br><span class="line">            jedis_2 = pool.getResource();</span><br><span class="line">        &#125; catch (CtgJedisPoolException e) &#123;</span><br><span class="line">            logger.error(&quot;jedis_2 : Get resource error&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            logger.info(&quot;=================== get jedis_3 =========================&quot;);</span><br><span class="line">            jedis_3 = pool.getResource();</span><br><span class="line">        &#125; catch (CtgJedisPoolException e) &#123;</span><br><span class="line">            logger.error(&quot;jedis_3 : Get resource error&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //第四次获取连接，失败。获取连接超时时间为2秒，重试一次，正确结果应该为4秒</span><br><span class="line">        ProxyJedis jedis_4 = null;</span><br><span class="line">        long startTime = 0L;</span><br><span class="line">        try &#123;</span><br><span class="line">            logger.info(&quot;=================== get jedis_4 =========================&quot;);</span><br><span class="line">            startTime = System.currentTimeMillis();</span><br><span class="line">            jedis_4 = pool.getResource();</span><br><span class="line">            logger.info(&quot;Get resource cost time : &quot; + (System.currentTimeMillis() - startTime));</span><br><span class="line">        &#125; catch (CtgJedisPoolException e) &#123;</span><br><span class="line">            logger.info(&quot;Get resource cost time : &quot; + (System.currentTimeMillis() - startTime));</span><br><span class="line">            logger.error(&quot;jedis_4 : Get resource error&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 归还一个连接，空闲连接数：1 活跃连接数：2，</span><br><span class="line">        // 等待后台执行剔除空闲连接，当前空闲连接数 = 需要保持最小空闲连接数，不会进行剔除，</span><br><span class="line">        // 硬闲置情况下达到限制时间，会被剔除</span><br><span class="line">        try&#123;</span><br><span class="line">            logger.info(&quot;=================== close jedis_1 =========================&quot;);</span><br><span class="line">            jedis_1.close();  //归还连接至连接池</span><br><span class="line">        &#125; catch (Throwable e) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            logger.info(&quot;============== Sleep 10 ===============&quot;);</span><br><span class="line">            Thread.sleep(10000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 继续归还一个连接，空闲连接数：2 活跃连接数：1，</span><br><span class="line">        // 等待后台执行剔除空闲连接，当前空闲连接数 &gt; 需要保持最小空闲连接数，进行剔除</span><br><span class="line">        try&#123;</span><br><span class="line">            logger.info(&quot;=================== close jedis_2 =========================&quot;);</span><br><span class="line">            jedis_2.close();  //归还连接至连接池</span><br><span class="line">        &#125; catch (Throwable e) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            logger.info(&quot;============== Sleep 9 ===============&quot;);</span><br><span class="line">            Thread.sleep(9000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        logger.info(&quot;-------------------------------pool close-----------------------------------&quot;);</span><br><span class="line">        pool.close(); //关闭连接池</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="硬闲置配置输出结果"><a href="#硬闲置配置输出结果" class="headerlink" title="硬闲置配置输出结果"></a>硬闲置配置输出结果</h4><p>poolConfig.setMinEvictableIdleTimeMillis(3000);  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"># 前三次获取成功</span><br><span class="line">=================== get jedis_1 =========================</span><br><span class="line">- makeJedis-- 132.122.232.225:9081</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 0 NumIdle: 0 NumWaiters: 0&#125;</span><br><span class="line">- =================== get jedis_2 =========================</span><br><span class="line">- makeJedis-- 132.122.232.225:9081</span><br><span class="line">- =================== get jedis_3 =========================</span><br><span class="line">- makeJedis-- 132.122.232.225:9081</span><br><span class="line"></span><br><span class="line"># 达到最大连接数，第四次获取失败，失败时间为4，与预期相同</span><br><span class="line"># NumWaiters = 1</span><br><span class="line">- =================== get jedis_4 =========================</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 3 NumIdle: 0 NumWaiters: 1&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 3 NumIdle: 0 NumWaiters: 1&#125;</span><br><span class="line">- Get jedis from ableNodes error at 132.122.232.225:9081 :Could not get a resource from the pool</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 3 NumIdle: 0 NumWaiters: 1&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 3 NumIdle: 0 NumWaiters: 1&#125;</span><br><span class="line">- Get jedis from ableNodes error at 132.122.232.225:9081 :Could not get a resource from the pool</span><br><span class="line">- Get resource cost time : 4003</span><br><span class="line">- jedis_4 : Get resource error</span><br><span class="line"></span><br><span class="line"># 归还一个连接</span><br><span class="line">- =================== close jedis_1 =========================</span><br><span class="line">- ============== Sleep 10 ===============</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 1到达3秒硬闲置时间，剔除，重新 makeJedis</span><br><span class="line">- makeJedis-- 132.122.232.225:9081</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 1到达3秒硬闲置时间，剔除，重新 makeJedis</span><br><span class="line">- makeJedis-- 132.122.232.225:9081</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"></span><br><span class="line"># 归还第二个连接</span><br><span class="line">- =================== close jedis_2 =========================</span><br><span class="line">- ============== Sleep 9 ===============</span><br><span class="line"># 未超过最大空闲连接数2，NumIdle+1 = 2</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 2 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 2 NumWaiters: 0&#125;</span><br><span class="line"># 到达3秒硬闲置时间，剔除，NumIdle - 1 = 1 = minIdle，不需要 makeJedis</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 1到达3秒硬闲置时间，剔除，重新 makeJedis</span><br><span class="line">- makeJedis-- 132.122.232.225:9081</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 1到达3秒硬闲置时间，剔除，重新 makeJedis</span><br><span class="line">- makeJedis-- 132.122.232.225:9081</span><br><span class="line">- nodePoolMap： &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- -------------------------------pool close-----------------------------------</span><br></pre></td></tr></table></figure>
+<h4 id="软闲置配置输出结果"><a href="#软闲置配置输出结果" class="headerlink" title="软闲置配置输出结果"></a>软闲置配置输出结果</h4><p>poolConfig.setSoftMinEvictableIdleTimeMillis(3000);  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 省略前面相同部分</span><br><span class="line"># 归还一个连接</span><br><span class="line">- =================== close jedis_1 =========================</span><br><span class="line">- ============== Sleep 10 ===============</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 1到达3秒软闲置时间，但 NumIdle = minIdle 不剔除，没有makeJedis日志输出</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 1到达3秒软闲置时间，但 NumIdle = minIdle 不剔除，没有makeJedis日志输出</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 2 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"></span><br><span class="line"># 归还第二个连接</span><br><span class="line">- =================== close jedis_2 =========================</span><br><span class="line">- ============== Sleep 9 ===============</span><br><span class="line"># 未超过最大空闲连接数2，NumIdle+1 = 2</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 2 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 2 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 2到达3秒软闲置时间，NumIdle &gt; minIdle 剔除，</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 1到达3秒软闲置时间，但 NumIdle = minIdle 不剔除，没有makeJedis日志输出</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- nodePoolMap: &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line"># NumIdle: 1到达3秒软闲置时间，但 NumIdle = minIdle 不剔除，没有makeJedis日志输出</span><br><span class="line">- nodePoolMap： &#123;132.122.232.225:9081=132.122.232.225:9081 NumActive: 1 NumIdle: 1 NumWaiters: 0&#125;</span><br><span class="line">- -------------------------------pool close-----------------------------------</span><br></pre></td></tr></table></figure>
+<p>从上述日志输出，验证了各参数的作用，其中 <strong>软闲置、硬闲置配置的区别，在于剔除闲置连接时，是否需要考虑当前 空闲连接与minIdle的大小关系。</strong></p>
+<p>此外，同时配置了软、硬闲置参数以后，输出结果与单独配置硬闲置参数相同，即<br><strong>设置MinEvictableIdleTimeMillis后，SoftMinEvictableIdleTimeMillis参数无效</strong></p>
 
       
     </div>
@@ -540,7 +474,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://he-zhao.cn/2016/08/13/EffectiveJava/" title="Effective Java读书笔记">http://he-zhao.cn/2016/08/13/EffectiveJava/</a>
+    <a href="http://he-zhao.cn/2018/04/25/Commons pool2 for jedis/" title="Commons pool2 配置详解及其在Jedis中的使用">http://he-zhao.cn/2018/04/25/Commons pool2 for jedis/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -557,7 +491,9 @@
           
             <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+            <a href="/tags/jedis/" rel="tag"># jedis</a>
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
           
         </div>
       
@@ -570,15 +506,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/16/MongoDB-repSet2/" rel="next" title="MongoDB副本集详解2-数据同步">
+                <i class="fa fa-chevron-left"></i> MongoDB副本集详解2-数据同步
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/11/个人博客搭建与配置：Hexo-github-域名绑定/" rel="prev" title="个人博客搭建与配置：Hexo-github-域名绑定">
-                个人博客搭建与配置：Hexo-github-域名绑定 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -769,7 +705,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建和销毁对象"><span class="nav-number">1.</span> <span class="nav-text">创建和销毁对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#考虑使用静态工厂代替构造函数"><span class="nav-number">1.1.</span> <span class="nav-text">考虑使用静态工厂代替构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到多个构造函数参数时，考虑使用构建器"><span class="nav-number">1.2.</span> <span class="nav-text">遇到多个构造函数参数时，考虑使用构建器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用私有构造器或者枚举类型强化单例属性"><span class="nav-number">1.3.</span> <span class="nav-text">使用私有构造器或者枚举类型强化单例属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避免创建不必要的对象"><span class="nav-number">1.4.</span> <span class="nav-text">避免创建不必要的对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消除过期的对象引用"><span class="nav-number">1.5.</span> <span class="nav-text">消除过期的对象引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避免使用终结方法"><span class="nav-number">1.6.</span> <span class="nav-text">避免使用终结方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有对象都通用的方法"><span class="nav-number">2.</span> <span class="nav-text">所有对象都通用的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#覆盖equals时，遵守通用约定"><span class="nav-number">2.1.</span> <span class="nav-text">覆盖equals时，遵守通用约定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#覆盖Equals时要覆盖hashCode"><span class="nav-number">2.2.</span> <span class="nav-text">覆盖Equals时要覆盖hashCode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#始终要覆盖toString"><span class="nav-number">2.3.</span> <span class="nav-text">始终要覆盖toString</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#谨慎地覆盖clone"><span class="nav-number">2.4.</span> <span class="nav-text">谨慎地覆盖clone</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#考虑实现Comparable接口"><span class="nav-number">2.5.</span> <span class="nav-text">考虑实现Comparable接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类和接口"><span class="nav-number">3.</span> <span class="nav-text">类和接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使类和成员的可访问性最小化"><span class="nav-number">3.1.</span> <span class="nav-text">使类和成员的可访问性最小化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在公有类中使用set、get而不是公有域"><span class="nav-number">3.2.</span> <span class="nav-text">在公有类中使用set、get而不是公有域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使可变性最小化"><span class="nav-number">3.3.</span> <span class="nav-text">使可变性最小化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复合优先与继承"><span class="nav-number">3.4.</span> <span class="nav-text">复合优先与继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口优与抽象类"><span class="nav-number">3.5.</span> <span class="nav-text">接口优与抽象类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数指针实现策略模式-Arrays-sort"><span class="nav-number">3.6.</span> <span class="nav-text">函数指针实现策略模式 Arrays.sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先使用静态成员类"><span class="nav-number">3.7.</span> <span class="nav-text">优先使用静态成员类</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Commons-pool2配置参数（以Jedis连接为例）"><span class="nav-number">1.</span> <span class="nav-text">Commons pool2配置参数（以Jedis连接为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JedisPool验证参数配置"><span class="nav-number">2.</span> <span class="nav-text">JedisPool验证参数配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#硬闲置配置输出结果"><span class="nav-number">2.1.</span> <span class="nav-text">硬闲置配置输出结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软闲置配置输出结果"><span class="nav-number">2.2.</span> <span class="nav-text">软闲置配置输出结果</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -928,9 +864,9 @@ var jiathis_config={
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://he-zhao.cn/2016/08/13/EffectiveJava/';
-          this.page.identifier = '2016/08/13/EffectiveJava/';
-          this.page.title = 'Effective Java读书笔记';
+          this.page.url = 'http://he-zhao.cn/2018/04/25/Commons pool2 for jedis/';
+          this.page.identifier = '2018/04/25/Commons pool2 for jedis/';
+          this.page.title = 'Commons pool2 配置详解及其在Jedis中的使用';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://pegasushe.disqus.com/embed.js';
