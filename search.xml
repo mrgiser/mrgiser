@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[redis笔记：事件]]></title>
+    <url>%2F2018%2F05%2F29%2FredisEvents%2F</url>
+    <content type="text"><![CDATA[1、事件redis服务器是一个事件驱动的程序，服务器处理两类事件： 文件事件：对套接字的操作 时间事件：定期执行的一些操作（serverCron） 2、文件事件redis基于Reactor模式开发了自己的网络事件处理器： 文件事件处理器采用i/o多路复用程序同时监听多个套接字，并根据套接字选择事件执行器 当监听的套接字准备好执行连接应答、读取、写入、关闭等操作时，产生对应事件 redis文件事件处理器的构成： 套接字 i/o多路复用程序 文件事件分派器 事件处理器 i/o多路复用程序，会将产生事件的套接字放置一个队列，通过队列以有序、同步的、每次一个套接字的方式向文件事件拍派发器传送套接字。文件事件处理器有： 连接应答处理器：acceptTCPhandler 命令请求处理器：readQueryFromClient 命令回复处理器：sendReplyToClient 3、时间事件时间事件分为两类： 定时事件 周期事件 一个时间事件包括三要素：id,when,timeproc（时间事件处理器） 时间事件处理器实现： 服务器将所有的时间事件放在一个无序链表中，运行时，遍历整个链表，调用到时间的事件对应的处理器。 正常情况下，服务器只有serverCron一个时间事件，所以采用无序链表不会影响性能。 serverCron函数的工作主要包括： 更新服务器的统计信息：时间，内存，数据库占用情况 清理过期键值对 关闭失效的连接 尝试进行aof\rdb持久化操作 对从服务器进行定期同步 集群模式下的定期同步，连接测试 4、事件调度与执行aeProcessEvents函数负责何时处理文件事件、何时处理时间事件，以及花费多久的时间将aeProcessEvents函数放置在循环中，加上初始化、清理函数，就构成了redis服务器的主函数]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+        <tag>学习笔记</tag>
+        <tag>内存数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[redis笔记：对象]]></title>
     <url>%2F2018%2F05%2F25%2Fredisobject%2F</url>
     <content type="text"><![CDATA[对象的类型redis中的对象包括： 字符串对象 REDIS_STRING 列表对象 REDIS_LIST 哈希对象 REDIS_HASH 集合对象 REDIS_SET 有序集合对象 REDIS_ZSET 对象的底层编码实现 REDIS_ENCODING_INT long类型的整数 REDIS_ENCODING_EMBSTR embstr编码的简单动态字符串 REDIS_ENCODING_RAW 简单动态字符串 REDIS_ENCODING_HT 字典 REDIS_ENCODING_LINKEDLIST 双端链表 REDIS_ENCODING_ZIPLIST 压缩列表 REDIS_ENCODING_INTSET 整数集合 REDIS_ENCODING_SKIPLIST 跳跃表和字典 类型与编码的对应关系 类型 编码方式 说明 REDIS_STRING REDIS_ENCODING_INT 整数值实现的字符串 REDIS_STRING REDIS_ENCODING_EMBSTR embstr编码的字符串 REDIS_STRING REDIS_ENCODING_RAW 简单动态字符串的字符串 REDIS_LIST REDIS_ENCODING_ZIPLIST 压缩列表实现的列表 REDIS_LIST REDIS_ENCODING_LINKEDLIST 双端列表实现的列表 REDIS_HASH REDIS_ENCODING_HT 字典实现的哈希对象 REDIS_HASH REDIS_ENCODING_ZIPLIST 压缩列表实现的哈希对象 REDIS_SET REDIS_ENCODING_INTSET 整数集合实现的集合 REDIS_SET REDIS_ENCODING_HT 字典实现的集合 REDIS_ZSET REDIS_ENCODING_SKIPLIST 跳跃表实现的有序集合 REDIS_ZSET REDIS_ENCODING_ZIPLIST 压缩列表实现的有序集合 字符串对象 是整数、并可以用long表示，编码为 REDIS_ENCODING_INT 是一个字符串值，长度大于32字节，REDIS_ENCODING_RAW 是一个字符串值，长度小于等于32， REDIS_ENCODING_EMBSTR（减少内存的申请，释放操作） 要点： EMBSTR通过一次申请连续的内存空间存储redisObject,sdshdr 释放也只需要一次 long double采用字符串存储 EMBSTR修改直接转换成raw，EMBSTR可以理解为只读 列表对象使用压缩列表默认条件（可修改）： 所保存的字符串元素长度都小于64字节 元素数量小于512个 不满足上述条件的采用双端链表实现列表对象 使用过程中不满足1.2条时，会转化底层的实现为双端 哈希对象使用压缩列表时： 先将保存键的节点放在压缩列表的队尾，然后是保存了值的节点 所以同一键值对的节点是在一起的，键在前，值在后 先添加的在压缩列表的头部，后来的在尾部 使用字典实现哈希： 哈希对象的每个键值使用一个字典的键值表示 使用压缩列表的默认条件（可修改）： 所有的键值对的键、值都小于64字节 键值对数量小于512 集合对象可以采用整数结合、字典实现。采用字典实现时，字典每个键都是一个集合元素，字典的值设置为null使用整数集合的默认条件（可以修改）： 所有元素都是整数 元素数量不超多512 有序集合可以使用压缩列表、跳跃表和字典实现。 使用压缩列表：每个元素采用两个紧挨一起的节点表示，前一个表示成员，后一个表示分数。压缩列表内部按照分数大小前后排序。 使用跳跃表和字典：同时包含一个跳跃表和字典。跳跃表按照分数大小保存了所有的集合元素（包括成员、分数），字典实现了成员到分值的映射，字典的键为元素成员，值为元素的分数，能够很快找到成员的分数 通过跳跃表实现范围类型的操作。 字典实现快速查找分数 字典和跳跃表通过指针共享相同的元素的成员和分数，不会冗余 使用压缩列表的默认条件（可以修改）： 元素数量小于128 元素的成员的长度都小于64字节 引用计数 redisObject结构中的refcount属性记录了对象的引用计数 object refcount key 查看引用计数 对象共享 默认初始化服务的时候新建0-9999的整数字符串进行共享 只共享整数因为对比消耗cpu少 对象空转时间 redisObject结构中的lru记录最后一次使用时间 object idletime key 查看空转时间 idletime不会更新lru]]></content>
@@ -95,8 +108,8 @@
         <category>MongoDB</category>
       </categories>
       <tags>
-        <tag>MongoDB</tag>
         <tag>java</tag>
+        <tag>MongoDB</tag>
       </tags>
   </entry>
   <entry>
@@ -158,9 +171,9 @@
         <category>JStorm</category>
       </categories>
       <tags>
+        <tag>java</tag>
         <tag>JStorm</tag>
         <tag>大数据</tag>
-        <tag>java</tag>
         <tag>安装</tag>
       </tags>
   </entry>
